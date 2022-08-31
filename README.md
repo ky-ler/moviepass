@@ -6,7 +6,7 @@ A Simple Movies List App using MVC architecture, user authentication, and [OMDb 
 
 # Packages/Dependencies used
 
-bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mongodb, mongoose, morgan, nodemon, passport, passport-local, validator
+bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mongodb, mongoose, morgan, node-fetch, nodemon, passport, passport-local, validator
 
 ---
 
@@ -23,7 +23,3 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
     -   PORT=2121 (can be any port example: 3000)
     -   DB_STRING=`your database URI`
     -   API_KEY=`your OMDb API key`
-
----
-
-Have fun testing and improving it! 😎
