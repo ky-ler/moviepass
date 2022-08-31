@@ -26,7 +26,7 @@ module.exports = {
         console.log(req)
         try {
             await Movie.create({
-                movieName: 'swag',
+                movieName: req.movieTitle,
                 // rating: 5;
                 userId: req.user.id,
             })
