@@ -5,6 +5,10 @@ const MovieSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    rating: {
+        type: Number,
+        required: false,
+    },
     userId: {
         type: String,
         required: true,

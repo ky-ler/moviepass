@@ -23,14 +23,32 @@
             `${moviesLeft} movies` %> left to watch.
         </h2>
 
-        <form action="/movies/addMovie" method="POST">
+        <form action="/movies/searchMovie" method="post">
             <input
                 type="search"
+                name="movieName"
+                placeholder="Enter Movie Title"
+            />
+            <input type="submit" />
+        </form>
+
+        <div class="result">
+            <% if (movieTitle !== null) {%>
+            <h2><%= movieTitle %></h2>
+            <% } %>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+
+        <!-- <form action="/movies/addMovie" method="POST">
+            <input
+                type="text"
                 placeholder="Enter Movie Name"
                 name="movieName"
             />
             <input type="submit" />
-        </form>
+        </form> -->
 
         <a href="/logout">Logout</a>
 
