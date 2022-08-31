@@ -3,25 +3,25 @@ const todoItem = document.querySelectorAll('span.not')
 const todoComplete = document.querySelectorAll('span.completed')
 
 Array.from(deleteBtn).forEach(el => {
-    el.addEventListener('click', deleteTodo)
+    el.addEventListener('click', deleteMovie)
 })
 
-Array.from(todoItem).forEach(el => {
-    el.addEventListener('click', markComplete)
-})
+// Array.from(todoItem).forEach(el => {
+//     el.addEventListener('click', markComplete)
+// })
 
-Array.from(todoComplete).forEach(el => {
-    el.addEventListener('click', markIncomplete)
-})
+// Array.from(todoComplete).forEach(el => {
+//     el.addEventListener('click', markIncomplete)
+// })
 
-async function deleteTodo() {
-    const todoId = this.parentNode.dataset.id
+async function deleteMovie() {
+    const movieId = this.parentNode.dataset.id
     try {
-        const response = await fetch('todos/deleteTodo', {
+        const response = await fetch('movies/deleteMovie', {
             method: 'delete',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({
-                todoIdFromJSFile: todoId,
+                movieIdFromJSFile: movieId,
             }),
         })
         const data = await response.json()
@@ -32,48 +32,38 @@ async function deleteTodo() {
     }
 }
 
-async function markComplete() {
-    const todoId = this.parentNode.dataset.id
-    try {
-        const response = await fetch('todos/markComplete', {
-            method: 'put',
-            headers: { 'Content-type': 'application/json' },
-            body: JSON.stringify({
-                todoIdFromJSFile: todoId,
-            }),
-        })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-    } catch (err) {
-        console.log(err)
-    }
-}
+// async function markComplete() {
+//     const movieId = this.parentNode.dataset.id
+//     try {
+//         const response = await fetch('movies/markComplete', {
+//             method: 'put',
+//             headers: { 'Content-type': 'application/json' },
+//             body: JSON.stringify({
+//                 movieIdFromJSFile: movieId,
+//             }),
+//         })
+//         const data = await response.json()
+//         console.log(data)
+//         location.reload()
+//     } catch (err) {
+//         console.log(err)
+//     }
+// }
 
-async function markIncomplete() {
-    const todoId = this.parentNode.dataset.id
-    try {
-        const response = await fetch('todos/markIncomplete', {
-            method: 'put',
-            headers: { 'Content-type': 'application/json' },
-            body: JSON.stringify({
-                todoIdFromJSFile: todoId,
-            }),
-        })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-    } catch (err) {
-        console.log(err)
-    }
-}
-
-async function getMovies(search) {
-    try {
-        const response = await fetch(
-            `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&language=en-US&query=${search}`
-        )
-    } catch (err) {
-        console.error(err)
-    }
-}
+// async function markIncomplete() {
+//     const movieId = this.parentNode.dataset.id
+//     try {
+//         const response = await fetch('movies/markIncomplete', {
+//             method: 'put',
+//             headers: { 'Content-type': 'application/json' },
+//             body: JSON.stringify({
+//                 movieIdFromJSFile: movieId,
+//             }),
+//         })
+//         const data = await response.json()
+//         console.log(data)
+//         location.reload()
+//     } catch (err) {
+//         console.log(err)
+//     }
+// }
