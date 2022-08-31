@@ -4,7 +4,7 @@ const Movie = require('../models/Movies')
 
 module.exports = {
     getMovies: async (req, res) => {
-        console.log(req.user)
+        console.log(req.body)
         try {
             const movies = await Movie.find({ userId: req.user.id })
             const moviesLeft = await Movie.countDocuments({
@@ -16,14 +16,17 @@ module.exports = {
                 moviesLeft: moviesLeft,
                 user: req.user,
             })
+
+            res.redirect('/movies')
         } catch (err) {
             console.log(err)
         }
     },
     addMovie: async (req, res) => {
+        console.log(req)
         try {
             await Movie.create({
-                movieName: req.body.movieName,
+                movieName: 'swag',
                 // rating: 5;
                 userId: req.user.id,
             })
@@ -49,19 +52,11 @@ module.exports = {
         const url = `http://www.omdbapi.com/?apikey=${process.env.API_KEY}&t='${movieTitle}'`
 
         try {
-            const movies = await Movie.find({ userId: req.user.id })
-            const moviesLeft = await Movie.countDocuments({
-                userId: req.user.id,
-                // completed: false,
-            })
             const response = await fetch(url)
             const data = await response.json()
-            console.log(data)
+            // console.log(data)
 
-            res.render('movies.ejs', {
-                movies: movies,
-                moviesLeft: moviesLeft,
-                user: req.user,
+            res.render('movieSearch.ejs', {
                 movieTitle: data.Title,
                 movieYear: data.Year,
                 movieRatings: data.Ratings,

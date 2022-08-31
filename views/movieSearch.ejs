@@ -5,32 +5,30 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="../css/style.css" />
     </head>
     <body>
-        <h1>Movie List</h1>
-        <ul>
-            <% movies.forEach( el => { %>
-            <li class="movieName" data-id="<%=el._id%>">
-                <span><%= el.movieName %></span>
-                <span class="del"> Delete </span>
-            </li>
-            <% }) %>
-        </ul>
-
-        <h2>
-            <%= user.userName %> has <%= moviesLeft === 1 ? '1 movie' :
-            `${moviesLeft} movies` %> left to watch.
-        </h2>
-
         <form action="/movies/search" method="post">
             <label for="movieName">Search for a movie: </label>
             <input type="search" name="movieName" placeholder="Movie Title" />
             <input type="submit" />
         </form>
 
+        <div class="result">
+            <% if (movieTitle !== null) {%>
+            <h2 id="movieName"><%= movieTitle %></h2>
+            <% } %>
+            <ul>
+                <li><% movieYear %></li>
+                <li><% movieRatings %></li>
+            </ul>
+            <form action="/movies/addMovie" method="post">
+                <input type="submit" value="Add to Favorites" />
+            </form>
+        </div>
+
         <a href="/logout">Logout</a>
 
-        <script src="js/main.js"></script>
+        <script src="../js/main.js"></script>
     </body>
 </html>
