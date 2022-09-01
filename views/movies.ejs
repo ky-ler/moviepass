@@ -13,6 +13,7 @@
             <% movies.forEach( el => { %>
             <li class="movieName" data-id="<%=el._id%>">
                 <span><%= el.movieName %></span>
+                <span>(<%= el.movieYear %>)</span>
                 <span class="del"> Delete </span>
             </li>
             <% }) %>

@@ -4,15 +4,18 @@ const Movie = require('../models/Movies')
 
 module.exports = {
     getMovies: async (req, res) => {
-        console.log(req.body)
+        console.log(req.user.id)
         try {
             const movies = await Movie.find({ userId: req.user.id })
+            const movieYear = await Movie.find(movies.movieYear)
+            // console.log(movies)
             const moviesLeft = await Movie.countDocuments({
                 userId: req.user.id,
                 // completed: false,
             })
             res.render('movies.ejs', {
                 movies: movies,
+                movieYear: movieYear,
                 moviesLeft: moviesLeft,
                 user: req.user,
             })
@@ -23,14 +26,20 @@ module.exports = {
     addMovie: async (req, res) => {
         console.log(req.body)
         try {
-            await Movie.create({
-                movieName: req.body.movieTitle,
-                movieYear: req.body.movieYear,
-                // rating: 5;
-                userId: req.user._id,
-            })
-            console.log('Movie has been added!')
-            res.redirect('/movies')
+            if (!(await Movie.countDocuments({ userId: req.user.id }))) {
+                await Movie.create({
+                    movieName: req.body.movieTitle,
+                    movieYear: req.body.movieYear,
+                    // rating: 5;
+                    userId: req.user._id,
+                })
+                console.log('Movie has been added!')
+                res.redirect('/movies')
+            } else {
+                await Movie.findOneAndDelete(req.body.movieTitle)
+                console.log('Movie has been deleted!')
+                res.redirect('/movies')
+            }
         } catch (err) {
             console.log(err)
         }
