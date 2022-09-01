@@ -7,7 +7,7 @@ router.get('/', ensureAuth, moviesController.getMovies)
 
 router.post('/addMovie', moviesController.addMovie)
 
-router.post('/search', moviesController.searchMovies)
+router.get('/search', moviesController.searchMovies)
 
 // Add rating feature
 // router.put('/addRating', moviesController.addRating)

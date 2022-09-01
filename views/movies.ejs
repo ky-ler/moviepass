@@ -12,7 +12,9 @@
         <ul>
             <% movies.forEach( el => { %>
             <li class="movieName" data-id="<%=el._id%>">
-                <span><%= el.movieName %></span>
+                <a href="/movies/search?movieName=<%= el.movieName %>">
+                    <span> <%= el.movieName %> </span>
+                </a>
                 <span>(<%= el.movieYear %>)</span>
                 <span class="del"> Delete </span>
             </li>
@@ -24,7 +26,7 @@
             `${moviesLeft} movies` %> left to watch.
         </h2>
 
-        <form action="/movies/search" method="post">
+        <form action="/movies/search" method="get">
             <label for="movieName">Search for a movie: </label>
             <input type="search" name="movieName" placeholder="Movie Title" />
             <input type="submit" />

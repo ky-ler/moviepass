@@ -46,7 +46,6 @@ module.exports = {
                 await Movie.findOneAndDelete({
                     movieName: req.body.movieTitle,
                     movieYear: req.body.movieYear,
-                    // rating: 5;
                     userId: req.user._id,
                 })
                 console.log('Movie has been deleted!')
@@ -67,8 +66,8 @@ module.exports = {
         }
     },
     searchMovies: async (req, res) => {
-        console.log(req.body)
-        const movieTitle = req.body.movieName
+        console.log(req.query)
+        const movieTitle = req.query.movieName
         const url = `http://www.omdbapi.com/?apikey=${process.env.API_KEY}&t='${movieTitle}'`
 
         try {
@@ -76,29 +75,25 @@ module.exports = {
             const data = await response.json()
             let movieOnList = false
 
-            const onList = Movie.findOne({
-                userId: req.user._id,
-                movieName: req.body.movieName,
-                // movieYear: data.movieYear,
-                // rating: 5;
-            })
-            // console.log(data.Year, data.Ratings[0])
-            // console.log(onList)
-            // console.log(data.Title)
+            console.log(data)
 
-            // This needs to be fixed
-            if (onList) {
+            const notOnList = !(await Movie.findOne({
+                userId: req.user._id,
+                movieName: req.query.movieName,
+            }))
+
+            // console.log(notOnList)
+
+            if (!notOnList) {
                 movieOnList = true
             }
             res.render('movieSearch.ejs', {
                 movieTitle: data.Title,
                 movieYear: data.Year,
                 movieRatings: data.Ratings,
+                moviePoster: data.Poster,
                 movieOnList: movieOnList,
             })
-
-            // response.json('Searched movies')
-            // res.redirect('/movies')
         } catch (err) {
             console.log(err)
         }

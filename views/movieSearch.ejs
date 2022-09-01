@@ -8,17 +8,22 @@
         <link rel="stylesheet" href="/css/style.css" />
     </head>
     <body>
-        <form action="/movies/search" method="post">
+        <form action="/movies/search" method="get">
             <label for="movieName">Search for a movie: </label>
             <input type="search" name="movieName" placeholder="Movie Title" />
             <input type="submit" />
         </form>
 
+        <a href="/movies">Go Back to Your List</a>
+
         <div class="result">
-            <% if (movieTitle !== null) {%>
+            <% if (movieTitle !== null || movieTitle !== undefined) {%>
             <h2 id="movieName"><%= movieTitle %></h2>
             <% } %>
             <h2 id="movieYear"><%= movieYear %></h2>
+            <img src="<%= moviePoster %>" alt="<%= movieTitle %> Poster" />
+
+            <% if (movieRatings !== null) {%>
             <h3>
                 <%= movieRatings[0].Source %>
                 <span><%= movieRatings[0].Value %></span>
@@ -31,10 +36,12 @@
                 <%= movieRatings[2].Source %>
                 <span><%= movieRatings[2].Value %></span>
             </h3>
-            <button id="addMovie"><%= movieOnList %></button>
-            <form action="/movies/addMovie" method="post">
-                <!-- <label for="addMovie">Add to List</label> -->
-            </form>
+            <% } %>
+
+            <button id="addMovie">
+                <%= movieOnList === false ? 'Add to List' : 'Remove from List'
+                %>
+            </button>
         </div>
 
         <a href="/logout">Logout</a>
