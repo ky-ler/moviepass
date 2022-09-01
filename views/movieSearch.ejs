@@ -18,12 +18,22 @@
             <% if (movieTitle !== null) {%>
             <h2 id="movieName"><%= movieTitle %></h2>
             <% } %>
-            <ul>
-                <li><% movieYear %></li>
-                <li><% movieRatings %></li>
-            </ul>
+            <h2 id="movieYear"><%= movieYear %></h2>
+            <h3>
+                <%= movieRatings[0].Source %>
+                <span><%= movieRatings[0].Value %></span>
+            </h3>
+            <h3>
+                <%= movieRatings[1].Source %>
+                <span><%= movieRatings[1].Value %></span>
+            </h3>
+            <h3>
+                <%= movieRatings[2].Source %>
+                <span><%= movieRatings[2].Value %></span>
+            </h3>
+            <button id="addFavorite">Add to List</button>
             <form action="/movies/addMovie" method="post">
-                <input type="submit" name="addMovie" />
+                <!-- <label for="addMovie">Add to List</label> -->
             </form>
         </div>
 

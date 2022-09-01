@@ -24,9 +24,10 @@ module.exports = {
         console.log(req.body)
         try {
             await Movie.create({
-                movieName: req.body.addMovie,
+                movieName: req.body.movieTitle,
+                movieYear: req.body.movieYear,
                 // rating: 5;
-                userId: req.user.id,
+                userId: req.user._id,
             })
             console.log('Movie has been added!')
             res.redirect('/movies')
@@ -45,14 +46,14 @@ module.exports = {
         }
     },
     searchMovies: async (req, res) => {
-        console.log(req.body.movieName)
+        // console.log(req.body.movieName)
         const movieTitle = req.body.movieName
         const url = `http://www.omdbapi.com/?apikey=${process.env.API_KEY}&t='${movieTitle}'`
 
         try {
             const response = await fetch(url)
             const data = await response.json()
-            // console.log(data)
+            // console.log(data.Year, data.Ratings[0])
 
             res.render('movieSearch.ejs', {
                 movieTitle: data.Title,
