@@ -25,11 +25,6 @@ module.exports = {
     },
     addMovie: async (req, res) => {
         console.log(req.body)
-        console.log(
-            Movie.countDocuments({
-                _id: req.body.movieIdFromJSFile,
-            })
-        )
         try {
             if (
                 !(await Movie.findOne({
@@ -72,19 +67,34 @@ module.exports = {
         }
     },
     searchMovies: async (req, res) => {
-        // console.log(req.body.movieName)
+        console.log(req.body)
         const movieTitle = req.body.movieName
         const url = `http://www.omdbapi.com/?apikey=${process.env.API_KEY}&t='${movieTitle}'`
 
         try {
             const response = await fetch(url)
             const data = await response.json()
-            // console.log(data.Year, data.Ratings[0])
+            let movieOnList = false
 
+            const onList = Movie.findOne({
+                userId: req.user._id,
+                movieName: req.body.movieName,
+                // movieYear: data.movieYear,
+                // rating: 5;
+            })
+            // console.log(data.Year, data.Ratings[0])
+            // console.log(onList)
+            // console.log(data.Title)
+
+            // This needs to be fixed
+            if (onList) {
+                movieOnList = true
+            }
             res.render('movieSearch.ejs', {
                 movieTitle: data.Title,
                 movieYear: data.Year,
                 movieRatings: data.Ratings,
+                movieOnList: movieOnList,
             })
 
             // response.json('Searched movies')

@@ -1,13 +1,13 @@
 const deleteBtn = document.querySelectorAll('.del')
-const addFav = document.getElementById('addFavorite')
+const addBtn = document.getElementById('addMovie')
 const movieName = document.getElementById('movieName')
 
 Array.from(deleteBtn).forEach(el => {
     el.addEventListener('click', deleteMovie)
 })
 
-if (addFav) {
-    addFav.addEventListener('click', addMovie)
+if (addBtn) {
+    addBtn.addEventListener('click', addMovie)
 }
 if (movieName) {
     movieName.addEventListener('click', addMovie)
