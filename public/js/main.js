@@ -6,8 +6,12 @@ Array.from(deleteBtn).forEach(el => {
     el.addEventListener('click', deleteMovie)
 })
 
-addFav.addEventListener('click', addMovie)
-movieName.addEventListener('click', addMovie)
+if (addFav) {
+    addFav.addEventListener('click', addMovie)
+}
+if (movieName) {
+    movieName.addEventListener('click', addMovie)
+}
 
 async function deleteMovie() {
     const movieId = this.parentNode.dataset.id
@@ -39,9 +43,9 @@ async function addMovie() {
                 movieYear: movieYear,
             }),
         })
-        const data = await res.json()
-        console.log(data)
-        location.assign('/movies')
+        // const data = await res.json()
+        console.log(res.url)
+        window.location.href = res.url
     } catch (err) {
         console.log(err)
     }
