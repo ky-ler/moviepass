@@ -3,7 +3,7 @@ const app = express()
 const mongoose = require('mongoose')
 const passport = require('passport')
 const session = require('express-session')
-const MongoStore = require('connect-mongo')(session)
+const MongoStore = require('connect-mongo')
 const flash = require('express-flash')
 const logger = require('morgan')
 const connectDB = require('./config/database')
@@ -27,11 +27,23 @@ app.use(logger('dev'))
 app.use(
     session({
         secret: 'keyboard cat',
+        cookie: {
+            // maxAge: 60000 * 60 * 24, //1Sec * 1H * 24 = 1 Day
+            secure: process.env.NODE_ENV !== 'prod' ? false : true,
+        },
         resave: false,
         saveUninitialized: false,
-        store: new MongoStore({ mongooseConnection: mongoose.connection }),
+        store: MongoStore.create({ mongoUrl: process.env.DB_STRING }),
     })
 )
+// app.use(
+//     session({
+//         secret: 'keyboard cat',
+//         resave: false,
+//         saveUninitialized: false,
+//         store: new MongoStore({ mongooseConnection: mongoose.connection }),
+//     })
+// )
 
 // Passport middleware
 app.use(passport.initialize())
