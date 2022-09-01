@@ -28,6 +28,7 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
 
 # To Do
 
--   Disable duplicate movies on list
+-   ~~Disable duplicate movies on list~~
+-   Update "Add to list" button based on if movie is already on list
 -   Maybe add posters?
 -   Style pages
