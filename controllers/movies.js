@@ -16,17 +16,15 @@ module.exports = {
                 moviesLeft: moviesLeft,
                 user: req.user,
             })
-
-            res.redirect('/movies')
         } catch (err) {
             console.log(err)
         }
     },
     addMovie: async (req, res) => {
-        console.log(req)
+        console.log(req.body)
         try {
             await Movie.create({
-                movieName: req.movieTitle,
+                movieName: req.body.addMovie,
                 // rating: 5;
                 userId: req.user.id,
             })
