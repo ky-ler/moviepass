@@ -41,7 +41,8 @@ app.use(flash())
 app.use('/', mainRoutes)
 app.use('/movies', movieRoutes)
 
-app.listen(process.env.PORT, () => {
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
     console.log('Server is running, you better catch it!')
-    console.log(`Server running on http://localhost:${process.env.PORT}`)
+    console.log(`Server running on http://localhost:${PORT}`)
 })
