@@ -7,7 +7,7 @@ module.exports = {
         console.log(req.body)
         try {
             const movies = await Movie.find({ userId: req.user.id })
-            const movieYear = await Movie.find(movies.movieYear)
+            // const movieYear = await Movie.find(movies.movieYear)
             // console.log(movies)
             const moviesLeft = await Movie.countDocuments({
                 userId: req.user.id,
@@ -15,7 +15,7 @@ module.exports = {
             })
             res.render('movies.ejs', {
                 movies: movies,
-                movieYear: movieYear,
+                // movieYear: movieYear,
                 moviesLeft: moviesLeft,
                 user: req.user,
             })
@@ -28,25 +28,25 @@ module.exports = {
         try {
             if (
                 !(await Movie.findOne({
-                    movieName: req.body.movieTitle.toLowerCase(),
-                    movieYear: req.body.movieYear,
+                    // movieName: req.body.movieTitle.toLowerCase(),
+                    // movieYear: req.body.movieYear,
+                    movieId: req.body.movieId,
                     // rating: 5;
                     userId: req.user._id,
                 }))
             ) {
                 await Movie.create({
-                    movieName: req.body.movieTitle.toLowerCase(),
-                    movieDisplayName: req.body.movieTitle,
-                    movieYear: req.body.movieYear,
-                    // rating: 5;
+                    movieId: req.body.movieId,
+                    movieTitle: req.body.movieTitle,
                     userId: req.user._id,
                 })
                 console.log('Movie has been added!')
                 res.redirect('/movies')
             } else {
                 await Movie.findOneAndDelete({
-                    movieName: req.body.movieTitle.toLowerCase(),
-                    movieYear: req.body.movieYear,
+                    // movieName: req.body.movieTitle.toLowerCase(),
+                    // movieYear: req.body.movieYear,
+                    movieId: req.body.movieId,
                     userId: req.user._id,
                 })
                 console.log('Movie has been deleted!')
@@ -69,31 +69,34 @@ module.exports = {
     searchMovies: async (req, res) => {
         console.log(req.query)
         const movieTitle = req.query.movieName
-        const url = `http://www.omdbapi.com/?apikey=${process.env.API_KEY}&t='${movieTitle}'`
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&language=en-US&query=${movieTitle}'`
 
         try {
             const response = await fetch(url)
             const data = await response.json()
-            let movieOnList = false
+            // let movieOnList = false
 
-            console.log(data)
+            console.log(data.results[2])
 
-            const notOnList = !(await Movie.findOne({
-                userId: req.user._id,
-                movieName: req.query.movieName.toLowerCase(),
-            }))
+            // const notOnList = data.results.forEach(movie => {
+            //     !(await Movie.findOne({
+            //         userId: req.user._id,
+            //         movieId: movie.id,
+            //     }))
+            // }
 
             // console.log(notOnList)
 
-            if (!notOnList) {
-                movieOnList = true
-            }
+            // if (!notOnList) {
+            //     movieOnList = true
+            // }
             res.render('movieSearch.ejs', {
-                movieTitle: data.Title,
-                movieYear: data.Year,
-                movieRatings: data.Ratings,
-                moviePoster: data.Poster,
-                movieOnList: movieOnList,
+                movies: data.results,
+                // movieTitle: data.Title,
+                // movieYear: data.Year,
+                // movieRatings: data.Ratings,
+                // moviePoster: data.Poster,
+                // movieOnList: movieOnList,
             })
         } catch (err) {
             console.log(err)

@@ -8,18 +8,17 @@
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
+        <header>
+            <nav>
+                <div class="navItems">
+                    <ul>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
         <h1>Movie List</h1>
-        <ul>
-            <% movies.forEach( el => { %>
-            <li class="movieName" data-id="<%=el._id%>">
-                <a href="/movies/search?movieName=<%= el.movieName %>">
-                    <span><%= el.movieDisplayName %></span>
-                </a>
-                <span> (<%= el.movieYear %>)</span>
-                <span class="del"> Delete </span>
-            </li>
-            <% }) %>
-        </ul>
 
         <h2>
             <%= user.userName %> has <%= moviesLeft === 1 ? '1 movie' :
@@ -32,7 +31,18 @@
             <input type="submit" role="button" />
         </form>
 
-        <a href="/logout">Logout</a>
+        <div class="moviesList">
+            <ul class="list">
+                <% movies.forEach( el => { %>
+                <li class="movieName" data-id="<%=el._id%>">
+                    <a href="/movies/search?movieName=<%= el.movieTitle %>"
+                        ><%=el.movieTitle%></a
+                    >
+                    <span class="del">(Click here to Delete)</span>
+                </li>
+                <% }) %>
+            </ul>
+        </div>
 
         <script src="js/main.js"></script>
     </body>
