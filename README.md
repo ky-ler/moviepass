@@ -32,4 +32,5 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
 -   ~~Update "Add to list" button based on if movie is already on list~~
 -   ~~Maybe add posters?~~
 -   Add check to see if movie exists
+-   Update homepage and login/logout pages
 -   Style pages
