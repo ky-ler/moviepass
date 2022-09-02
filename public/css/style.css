@@ -13,6 +13,29 @@ body {
     text-align: center;
 }
 
-button {
-    width: 20%;
+.results {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.moviePoster {
+    height: 250px;
+}
+
+.card {
+    max-width: 166.66px;
+}
+
+.card header {
+    margin: 2em 0 auto 0;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
 }

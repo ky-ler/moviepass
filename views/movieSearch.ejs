@@ -16,33 +16,30 @@
 
         <a href="/movies">Go Back to Your List</a>
 
-        <div class="result">
-            <% if (movieTitle !== null || movieTitle !== undefined) {%>
-            <h2 id="movieName"><%= movieTitle %></h2>
-            <% } %>
-            <h2 id="movieYear"><%= movieYear %></h2>
-            <img src="<%= moviePoster %>" alt="<%= movieTitle %> Poster" />
-
-            <% if (movieRatings !== null) {%>
-            <h3>
-                <%= movieRatings[0].Source %>
-                <span><%= movieRatings[0].Value %></span>
-            </h3>
-            <h3>
-                <%= movieRatings[1].Source %>
-                <span><%= movieRatings[1].Value %></span>
-            </h3>
-            <h3>
-                <%= movieRatings[2].Source %>
-                <span><%= movieRatings[2].Value %></span>
-            </h3>
-            <% } %>
-
-            <button id="addMovie">
-                <%= movieOnList === false ? 'Add to List' : 'Remove from List'
-                %>
-            </button>
-        </div>
+        <section class="flex">
+            <div class="results">
+                <% for (let i = 0; i < 15; i++) { %> <% if (movies[i]) { %>
+                <div class="card" id="<%= movies[i].id %>">
+                    <header>
+                        <%= movies[i].title %> <% if (movies[i].release_date) {
+                        %> (<%= movies[i].release_date.split('-')[0] %>) <% } %>
+                    </header>
+                    <img
+                        class="moviePoster"
+                        src="https://image.tmdb.org/t/p/original<%= movies[i].poster_path %>"
+                        onerror="this.src='https:\/\/placeimg.com/166/250/any'; this.alt='movie poster not found. placeholder image inserted'"
+                        alt="<%= movies[i].title %> Movie Poster"
+                    />
+                    <button
+                        class="<%= movies[i].id %>"
+                        onclick="addMovie(<%= movies[i].id %>, '<%= movies[i].title %>')"
+                    >
+                        Add to Favorites
+                    </button>
+                </div>
+                <% } %> <% } %>
+            </div>
+        </section>
 
         <a href="/logout">Logout</a>
 

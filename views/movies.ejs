@@ -12,11 +12,10 @@
         <ul>
             <% movies.forEach( el => { %>
             <li class="movieName" data-id="<%=el._id%>">
-                <a href="/movies/search?movieName=<%= el.movieName %>">
-                    <span><%= el.movieDisplayName %></span>
-                </a>
-                <span> (<%= el.movieYear %>)</span>
-                <span class="del"> Delete </span>
+                <a href="/movies/search?movieName=<%= el.movieTitle %>"
+                    ><%=el.movieTitle%></a
+                >
+                <span class="del">Delete </span>
             </li>
             <% }) %>
         </ul>
