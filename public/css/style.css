@@ -1,36 +1,91 @@
-h1 {
-    color: red;
-}
-.completed {
-    text-decoration: line-through;
-    color: gray;
-}
-.not {
-    text-decoration: underline;
+@font-face {
+    font-family: 'poppinsregular';
+    src: url('../fonts/poppins-regular-webfont.woff2') format('woff2'),
+        url('../fonts/poppins-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 body {
+    font-family: 'poppinsregular', sans-serif;
+    text-align: center;
+    background: rgb(39, 44, 53);
+    color: white;
+}
+
+h1 {
     text-align: center;
 }
 
-.results {
-    width: 50%;
+a {
+    text-decoration: none;
+    color: white;
+}
+
+nav {
+    padding: 0 8em;
+}
+
+.navItems {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navItems ul {
+    list-style: none;
+}
+
+.navItems li {
+    display: inline;
+}
+
+.upcoming,
+.changelog {
+    width: 50%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.list {
+    text-align: left;
+}
+
+.moviesList {
+    display: flex;
+    justify-content: center;
+}
+
+.results {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
     align-items: center;
+    text-align: center;
 }
 
 .moviePoster {
     height: 250px;
+    width: 166px;
 }
 
 .card {
+    margin: 1em 0;
+    padding: 4em 2em;
+    background: rgb(22, 25, 31);
+    color: white;
     max-width: 166.66px;
+    border-radius: 1em;
 }
 
 .card header {
-    margin: 2em 0 auto 0;
+    height: 5em;
+    vertical-align: center;
+}
+
+.card button {
+    margin-top: 4em;
 }
 
 .flex {
@@ -38,4 +93,9 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
+    text-align: center;
+}
+
+section .results {
+    margin-top: 2em;
 }

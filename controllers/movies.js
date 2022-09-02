@@ -74,9 +74,9 @@ module.exports = {
         try {
             const response = await fetch(url)
             const data = await response.json()
-            let movieOnList = false
+            // let movieOnList = false
 
-            console.log(data.results[0])
+            console.log(data.results[2])
 
             // const notOnList = data.results.forEach(movie => {
             //     !(await Movie.findOne({
@@ -96,7 +96,7 @@ module.exports = {
                 // movieYear: data.Year,
                 // movieRatings: data.Ratings,
                 // moviePoster: data.Poster,
-                movieOnList: movieOnList,
+                // movieOnList: movieOnList,
             })
         } catch (err) {
             console.log(err)

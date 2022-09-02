@@ -42,7 +42,7 @@ async function addMovie(id, title) {
             }),
         })
         const data = await res
-        // console.log(data)
+        console.log(data)
         window.location.href = res.url
         // location.reload()
     } catch (err) {
