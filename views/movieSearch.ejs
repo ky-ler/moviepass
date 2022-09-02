@@ -25,42 +25,38 @@
             <input type="submit" />
         </form>
 
-        <!-- <a href="/movies">Go Back to Your List</a> -->
-
         <% if (!movies.length) { %>
         <h1 class="center">Movie not found</h1>
         <% } %>
         <section class="flex">
             <div class="results">
-                <% for (let i = 0; i < 15; i++) { %> <% if (movies[i]) { %>
-                <div class="card" id="<%= movies[i].id %>">
-                    <header>
-                        <a
-                            href="https://www.themoviedb.org/movie/<%= movies[i].id %>"
-                        >
-                            <%= movies[i].title %> <% if
-                            (movies[i].release_date) { %> (<%=
-                            movies[i].release_date.split('-')[0] %>) <% } %>
-                        </a>
-                    </header>
-                    <img
-                        class="moviePoster"
-                        src="https://image.tmdb.org/t/p/original<%= movies[i].poster_path %>"
-                        onerror="this.src='https:\/\/placeimg.com/166/250/nature'; this.alt='movie poster not found. placeholder image inserted'"
-                        alt="<%= movies[i].title %> Movie Poster"
-                    />
-                    <button
-                        class="<%= movies[i].id %>"
-                        onclick="addMovie(<%= movies[i].id %>, '<%= movies[i].title %>')"
-                    >
-                        Add to List
-                    </button>
-                </div>
-                <% } %> <% } %>
+                <% for (let i = 0; i < 15; i++) { %> 
+                    <% if (movies[i]) { %>
+                        <div class="card" id="<%= movies[i].id %>">
+                            <header>
+                                <a href="https://www.themoviedb.org/movie/<%= movies[i].id %>">
+                                    <%= movies[i].title %> 
+                                    <% if (movies[i].release_date) { %> 
+                                        (<%= movies[i].release_date.split('-')[0] %>) 
+                                    <% } %>
+                                </a>
+                            </header>
+                            <img
+                                class="moviePoster"
+                                src="https://image.tmdb.org/t/p/original<%= movies[i].poster_path %>"
+                                onerror="this.src='https:\/\/placeimg.com/166/250/nature'; this.alt='movie poster not found. placeholder image inserted'"
+                                alt="<%= movies[i].title %> Movie Poster"
+                            />
+                            <button
+                                class="<%= movies[i].id %>"
+                                onclick="addMovie(<%= movies[i].id %>, '<%= movies[i].title %>')">
+                                Add to List
+                            </button>
+                        </div>
+                    <% } %> 
+                <% } %>
             </div>
         </section>
-
-        <a href="/logout">Logout</a>
 
         <script src="/js/main.js"></script>
     </body>
