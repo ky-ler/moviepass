@@ -13,9 +13,9 @@
             <% movies.forEach( el => { %>
             <li class="movieName" data-id="<%=el._id%>">
                 <a href="/movies/search?movieName=<%= el.movieName %>">
-                    <span> <%= el.movieName %> </span>
+                    <span><%= el.movieDisplayName %></span>
                 </a>
-                <span>(<%= el.movieYear %>)</span>
+                <span> (<%= el.movieYear %>)</span>
                 <span class="del"> Delete </span>
             </li>
             <% }) %>

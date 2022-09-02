@@ -28,14 +28,15 @@ module.exports = {
         try {
             if (
                 !(await Movie.findOne({
-                    movieName: req.body.movieTitle,
+                    movieName: req.body.movieTitle.toLowerCase(),
                     movieYear: req.body.movieYear,
                     // rating: 5;
                     userId: req.user._id,
                 }))
             ) {
                 await Movie.create({
-                    movieName: req.body.movieTitle,
+                    movieName: req.body.movieTitle.toLowerCase(),
+                    movieDisplayName: req.body.movieTitle,
                     movieYear: req.body.movieYear,
                     // rating: 5;
                     userId: req.user._id,
@@ -44,7 +45,7 @@ module.exports = {
                 res.redirect('/movies')
             } else {
                 await Movie.findOneAndDelete({
-                    movieName: req.body.movieTitle,
+                    movieName: req.body.movieTitle.toLowerCase(),
                     movieYear: req.body.movieYear,
                     userId: req.user._id,
                 })
@@ -79,7 +80,7 @@ module.exports = {
 
             const notOnList = !(await Movie.findOne({
                 userId: req.user._id,
-                movieName: req.query.movieName,
+                movieName: req.query.movieName.toLowerCase(),
             }))
 
             // console.log(notOnList)
