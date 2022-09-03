@@ -2,17 +2,13 @@
 
 A Simple Movies List App using MVC architecture, user authentication, and [TMDB's API](https://www.themoviedb.org/).
 
+> View live deployment [here](https://movie-list-production-23e9.up.railway.app/)
+
 ---
 
 # Packages/Dependencies used
 
 bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mongodb, mongoose, morgan, node-fetch, nodemon, passport, passport-local, validator
-
----
-
-# Install all the dependencies or node packages used for development via Terminal
-
-`npm install`
 
 ---
 
@@ -23,12 +19,12 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
     -   PORT=2121 (can be any port example: 3000)
     -   DB_STRING=`your database URI`
     -   API_KEY=`your TMDB API key`
+    -   NODE_ENV=`dev` or `prod`
 
 ---
 
 # To Do
 
--   (Currently) Changing from OMDb API to TMDB API for fetching movies
 -   Change "Add to List" button to "Remove from List" if movie exists in your list
 -   Give user feedback when adding to/removing from list
 -   Update homepage and login/logout pages -- add more information
