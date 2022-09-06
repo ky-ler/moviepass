@@ -1,63 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Search | Movie List</title>
-        <link rel="stylesheet" href="../css/style.css" />
-    </head>
-    <body>
-        <header>
-            <nav>
-                <div class="navItems">
-                    <ul>
-                        <li><a href="/movies">My List</a></li>
-                        <li><a href="/logout">Logout</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search | MoviePass</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="navItems">
+          <ul>
+            <li><a href="/movies">My List</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
 
-        <form action="/movies/search" method="get">
-            <label for="movieName">Search for a movie: </label>
-            <input type="search" name="movieName" placeholder="Movie Title" />
-            <input type="submit" />
-        </form>
+    <form action="/movies/search" method="get">
+      <label for="movieName">Search for a movie: </label>
+      <input type="search" name="movieName" placeholder="Movie Title" />
+      <input type="submit" />
+    </form>
 
-        <% if (!movies.length) { %>
-        <h1 class="center">Movie not found</h1>
-        <% } %>
-        <section class="flex">
-            <div class="results">
-                <% for (let i = 0; i < 15; i++) { %> 
-                    <% if (movies[i]) { %>
-                        <div class="card" id="<%= movies[i].id %>">
-                            <header>
-                                <a href="https://www.themoviedb.org/movie/<%= movies[i].id %>">
-                                    <%= movies[i].title %> 
-                                    <% if (movies[i].release_date) { %> 
-                                        (<%= movies[i].release_date.split('-')[0] %>) 
-                                    <% } %>
-                                </a>
-                            </header>
-                            <img
-                                class="moviePoster"
-                                src="https://image.tmdb.org/t/p/original<%= movies[i].poster_path %>"
-                                onerror="this.src='../img/not-found.png'; this.alt='movie poster not found'"
-                                alt="<%= movies[i].title %> Movie Poster"
-                            />
-                            <button
-                                class="<%= movies[i].id %>"
-                                onclick="addMovie(<%= movies[i].id %>, '<%= movies[i].title %>')">
-                                Add to List
-                            </button>
-                        </div>
-                    <% } %> 
-                <% } %>
-            </div>
-        </section>
+    <% if (!movies.length) { %>
+    <h1 class="center">Movie not found</h1>
+    <% } %>
+    <section class="flex">
+      <div class="results">
+        <% for (let i = 0; i < 15; i++) { %> <% if (movies[i]) { %>
+        <div class="card" id="<%= movies[i].id %>">
+          <header>
+            <a href="https://www.themoviedb.org/movie/<%= movies[i].id %>">
+              <%= movies[i].title %> <% if (movies[i].release_date) { %> (<%=
+              movies[i].release_date.split('-')[0] %>) <% } %>
+            </a>
+          </header>
+          <img
+            class="moviePoster"
+            src="https://image.tmdb.org/t/p/original<%= movies[i].poster_path %>"
+            onerror="this.src='../img/not-found.png'; this.alt='movie poster not found'"
+            alt="<%= movies[i].title %> Movie Poster"
+          />
+          <button
+            class="<%= movies[i].id %>"
+            onclick="addMovie(<%= movies[i].id %>, '<%= movies[i].title %>')"
+          >
+            Add to List
+          </button>
+        </div>
+        <% } %> <% } %>
+      </div>
+    </section>
 
-        <script src="/js/main.js"></script>
-    </body>
+    <script src="/js/main.js"></script>
+  </body>
 </html>

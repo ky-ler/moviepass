@@ -1,49 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>My List | Movie List</title>
-        <link rel="stylesheet" href="css/style.css" />
-    </head>
-    <body>
-        <header>
-            <nav>
-                <div class="navItems">
-                    <ul>
-                        <li><a href="/logout">Logout</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-
-        <h1>Movie List</h1>
-
-        <h2>
-            <%= user.userName %> has <%= moviesLeft === 1 ? '1 movie' :
-            `${moviesLeft} movies` %> left to watch.
-        </h2>
-
-        <form action="/movies/search" method="get">
-            <label for="movieName">Search for a movie: </label>
-            <input type="search" name="movieName" placeholder="Movie Title" />
-            <input type="submit" role="button" />
-        </form>
-
-        <div class="moviesList">
-            <ul class="list">
-                <% movies.forEach( el => { %>
-                    <li class="movieName" data-id="<%=el._id%>">
-                        <a href="/movies/search?movieName=<%= el.movieTitle %>">
-                            <%=el.movieTitle%>
-                        </a>
-                        <span class="del">(Click here to Delete)</span>
-                    </li>
-                <% }) %>
-            </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My List | MoviePass</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="navItems">
+          <ul>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
         </div>
+      </nav>
+    </header>
 
-        <script src="js/main.js"></script>
-    </body>
+    <h1>My List</h1>
+
+    <!-- <h2> -->
+    <!-- <%= user.userName %> has <%= moviesLeft === 1 ? '1 movie' : `${moviesLeft}
+      movies` %> left to watch. -->
+    <!-- </h2> -->
+
+    <form action="/movies/search" method="get">
+      <label for="movieName">Search for a movie: </label>
+      <input type="search" name="movieName" placeholder="Movie Title" />
+      <input type="submit" role="button" />
+    </form>
+
+    <div class="moviesList">
+      <ul class="list">
+        <% movies.forEach( el => { %>
+        <li class="movieName" data-id="<%=el._id%>">
+          <a href="/movies/search?movieName=<%= el.movieTitle %>">
+            <%=el.movieTitle%>
+          </a>
+          <span class="del">(Click here to Delete)</span>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
 </html>
