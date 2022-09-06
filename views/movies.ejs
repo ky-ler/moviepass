@@ -33,10 +33,10 @@
 
     <div class="moviesList">
       <ul class="list">
-        <% movies.forEach( el => { %>
-        <li class="movieName" data-id="<%=el._id%>">
-          <a href="/movies/search?movieName=<%= el.movieTitle %>">
-            <%=el.movieTitle%>
+        <% movies.forEach( movie => { %>
+        <li class="movieName" data-id="<%=movie._id%>">
+          <a href="/movies/search?movieName=<%= movie.movieTitle %>">
+            <%=movie.movieTitle%>
           </a>
           <span class="del">(Click here to Delete)</span>
         </li>

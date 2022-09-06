@@ -25,7 +25,6 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
 
 # To Do
 
-- Change "Add to List" button to "Remove from List" if movie exists in your list
 - Give user feedback when adding to/removing from list
 - Update homepage and login/logout pages -- add more information
 - Style pages using Tailwind CSS (possibly rewrite frontend using React)

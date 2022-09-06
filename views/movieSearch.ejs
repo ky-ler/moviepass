@@ -46,9 +46,10 @@
           />
           <button
             class="<%= movies[i].id %>"
-            onclick="addMovie(<%= movies[i].id %>, '<%= movies[i].title %>')"
+            onclick="addMovie(<%= movies[i].id %>, '<%= movies[i].title %>', <% if (movies[i].release_date) { %> <%=
+              movies[i].release_date.split('-')[0] %> <% } %>)"
           >
-            Add to List
+            <%= movies[i].onList == false ? 'Add to List' : 'Remove from List'%>
           </button>
         </div>
         <% } %> <% } %>
