@@ -23,12 +23,12 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(logger('dev'))
+
 // Sessions
 app.use(
     session({
         secret: 'keyboard cat',
         cookie: {
-            // maxAge: 60000 * 60 * 24, //1Sec * 1H * 24 = 1 Day
             secure: process.env.NODE_ENV !== 'prod' ? false : true,
         },
         resave: false,
@@ -36,14 +36,6 @@ app.use(
         store: MongoStore.create({ mongoUrl: process.env.DB_STRING }),
     })
 )
-// app.use(
-//     session({
-//         secret: 'keyboard cat',
-//         resave: false,
-//         saveUninitialized: false,
-//         store: new MongoStore({ mongooseConnection: mongoose.connection }),
-//     })
-// )
 
 // Passport middleware
 app.use(passport.initialize())

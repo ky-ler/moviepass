@@ -11,11 +11,9 @@ module.exports = {
             // console.log(movies)
             const moviesLeft = await Movie.countDocuments({
                 userId: req.user.id,
-                // completed: false,
             })
             res.render('movies.ejs', {
                 movies: movies,
-                // movieYear: movieYear,
                 moviesLeft: moviesLeft,
                 user: req.user,
             })
@@ -28,10 +26,7 @@ module.exports = {
         try {
             if (
                 !(await Movie.findOne({
-                    // movieName: req.body.movieTitle.toLowerCase(),
-                    // movieYear: req.body.movieYear,
                     movieId: req.body.movieId,
-                    // rating: 5;
                     userId: req.user._id,
                 }))
             ) {
@@ -44,8 +39,6 @@ module.exports = {
                 res.redirect('/movies')
             } else {
                 await Movie.findOneAndDelete({
-                    // movieName: req.body.movieTitle.toLowerCase(),
-                    // movieYear: req.body.movieYear,
                     movieId: req.body.movieId,
                     userId: req.user._id,
                 })
@@ -76,7 +69,7 @@ module.exports = {
             const data = await response.json()
             // let movieOnList = false
 
-            console.log(data.results[2])
+            // console.log(data.results[2])
 
             // const notOnList = data.results.forEach(movie => {
             //     !(await Movie.findOne({
@@ -92,10 +85,6 @@ module.exports = {
             // }
             res.render('movieSearch.ejs', {
                 movies: data.results,
-                // movieTitle: data.Title,
-                // movieYear: data.Year,
-                // movieRatings: data.Ratings,
-                // moviePoster: data.Poster,
                 // movieOnList: movieOnList,
             })
         } catch (err) {

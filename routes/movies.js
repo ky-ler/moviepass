@@ -9,9 +9,6 @@ router.post('/addMovie', moviesController.addMovie)
 
 router.get('/search', moviesController.searchMovies)
 
-// Add rating feature
-// router.put('/addRating', moviesController.addRating)
-
 router.delete('/deleteMovie', moviesController.deleteMovie)
 
 module.exports = router
