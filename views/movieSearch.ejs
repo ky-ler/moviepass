@@ -7,45 +7,64 @@
     <title>Search | MoviePass</title>
     <link rel="stylesheet" href="../css/style.css" />
   </head>
-  <body>
-    <header>
-      <nav>
-        <div class="navItems">
-          <ul>
-            <li><a href="/movies">My List</a></li>
-            <li><a href="/logout">Logout</a></li>
-          </ul>
-        </div>
+  <body
+    class="bg-neutral-900 text-white text-center flex flex-col h-screen justify-between"
+  >
+    <header class="py-6 px-12 bg-neutral-700">
+      <nav class="flex justify-center md:justify-end items-center">
+        <ul class="flex">
+          <li class="mr-2"><a href="/movies" class="p-2">My List</a></li>
+          <li><a href="/logout" class="p-2">Log Out</a></li>
+        </ul>
       </nav>
     </header>
 
-    <form action="/movies/search" method="get">
+    <% if (!movies.length) { %>
+    <h2 class="text-2xl md:text-4xl mt-6 md:mt-12">Movie not found</h2>
+    <% } %>
+
+    <h2 class="text-2xl md:text-4xl mt-6 md:mt-12">
+      Results for <span class="text-teal-400">'<%= movieName %>'</span>
+    </h2>
+
+    <form action="/movies/search" method="get" class="mt-6">
       <label for="movieName">Search for a movie: </label>
-      <input type="search" name="movieName" placeholder="Movie Title" />
-      <input type="submit" />
+      <input
+        type="search"
+        name="movieName"
+        placeholder="Movie Title"
+        class="py-2 px-4 text-neutral-900"
+      />
+      <input
+        type="submit"
+        value="Search"
+        class="bg-neutral-700 mt-4 py-2 px-4 rounded-2xl"
+      />
     </form>
 
-    <% if (!movies.length) { %>
-    <h1 class="center">Movie not found</h1>
-    <% } %>
-    <section class="flex">
-      <div class="results">
+    <section class="flex justify-around items-center mt-4 md:mt-12">
+      <div
+        class="results flex flex-col md:flex-row justify-around items-center flex-wrap text-center md:w-3/5"
+      >
         <% for (let i = 0; i < 15; i++) { %> <% if (movies[i]) { %>
-        <div class="card" id="<%= movies[i].id %>">
-          <header>
+        <div
+          class="card flex flex-col justify-center items-center my-8 p-6 bg-neutral-700 rounded-2xl"
+          id="<%= movies[i].id %>"
+        >
+          <h2 class="h-20 align-middle">
             <a href="https://www.themoviedb.org/movie/<%= movies[i].id %>">
               <%= movies[i].title %> <% if (movies[i].release_date) { %> (<%=
               movies[i].release_date.split('-')[0] %>) <% } %>
             </a>
-          </header>
+          </h2>
           <img
-            class="moviePoster"
+            class="movie-poster"
             src="https://image.tmdb.org/t/p/original<%= movies[i].poster_path %>"
             onerror="this.src='../img/not-found.png'; this.alt='movie poster not found'"
             alt="<%= movies[i].title %> Movie Poster"
           />
           <button
-            class="<%= movies[i].id %>"
+            class="<%= movies[i].id %> mt-2 md:mt-4"
             onclick="addMovie(<%= movies[i].id %>, '<%= movies[i].title %>', <% if (movies[i].release_date) { %> <%=
               movies[i].release_date.split('-')[0] %> <% } %>)"
           >
@@ -55,6 +74,10 @@
         <% } %> <% } %>
       </div>
     </section>
+
+    <footer class="py-6 px-12 mt-12 w-full bg-neutral-700">
+      <h3>Created by <a href="https://kylerriggs.com">Kyler Riggs</a></h3>
+    </footer>
 
     <script src="/js/main.js"></script>
   </body>

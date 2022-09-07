@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'poppinsregular';
+  src: url('../fonts/poppins-regular-webfont.woff2') format('woff2'),
+    url('../fonts/poppins-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'poppinsregular', sans-serif;
+}
+
+/* h1 {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+nav {
+  padding: 0 8em;
+}
+
+.navItems {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.navItems ul {
+  list-style: none;
+}
+
+.navItems li {
+  display: inline;
+}
+
+.upcoming,
+.changelog {
+  width: 50%;
+  margin: 0 auto;
+  text-align: left;
+} */
+
+/* .list {
+  text-align: left;
+} */
+
+/* .moviesList {
+  display: flex;
+  justify-content: center;
+} */
+
+/* .results {
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+} */
+
+.movie-poster {
+  height: 250px;
+  width: 166px;
+}
+
+.card {
+  max-width: 200px;
+}

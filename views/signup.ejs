@@ -7,20 +7,54 @@
     <title>Sign Up | MoviePass</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
+  <body class="bg-neutral-900 text-white text-center">
+    <h1 class="text-teal-400 text-2xl md:text-5xl mt-6 md:mt-12">
+      MoviePass | Sign Up
+    </h1>
     <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
     <div class="alert alert-danger"><%= el.msg %></div>
     <% }) %> <% } %>
-    <form action="/signup" method="POST">
-      <input type="text" name="userName" placeholder="User Name" />
-      <input type="email" name="email" placeholder="Email" />
-      <input type="password" name="password" placeholder="Password" />
+
+    <form
+      action="/signup"
+      method="POST"
+      class="flex flex-col justify-center items-center mt-12"
+    >
+      <label for="userName">User Name: </label>
+      <input
+        type="text"
+        name="userName"
+        placeholder="Username"
+        class="py-2 px-4 text-neutral-900 rounded-2xl"
+      />
+      <label for="email" class="mt-6">Email: </label>
+      <input
+        type="email"
+        name="email"
+        placeholder="bob@gmail.com"
+        class="py-2 px-4 text-neutral-900 rounded-2xl"
+      />
+      <label for="password" class="mt-6"
+        >Password (8 characters minimum):
+      </label>
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        class="py-2 px-4 text-neutral-900 rounded-2xl"
+      />
+      <label for="confirmPassword" class="mt-6">Confirm Password: </label>
       <input
         type="password"
         name="confirmPassword"
         placeholder="Confirm Password"
+        class="py-2 px-4 text-neutral-900 rounded-2xl"
       />
-      <input type="submit" />
+      <input type="submit" class="bg-neutral-700 mt-6 py-2 px-4 rounded-2xl" />
     </form>
+
+    <footer class="py-6 px-12 mt-12 w-full fixed bottom-0 bg-neutral-700">
+      <h3>Created by <a href="https://kylerriggs.com">Kyler Riggs</a></h3>
+    </footer>
   </body>
 </html>

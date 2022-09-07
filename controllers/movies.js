@@ -84,6 +84,7 @@ module.exports = {
 
       res.render('movieSearch.ejs', {
         movies: data.results,
+        movieName: req.query.movieName,
       })
     } catch (err) {
       console.log(err)

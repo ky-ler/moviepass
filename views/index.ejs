@@ -7,55 +7,49 @@
     <title>MoviePass</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
-    <header>
-      <nav>
-        <div class="navItems">
-          <ul>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/signup">Signup</a></li>
-          </ul>
-        </div>
+  <body class="bg-neutral-900 text-white text-center">
+    <header class="py-6 px-12 bg-neutral-700">
+      <nav class="flex justify-center md:justify-end items-center">
+        <ul class="flex">
+          <li class="mr-2"><a href="/login" class="p-2">Log In</a></li>
+          <li><a href="/signup" class="p-2">Sign Up</a></li>
+        </ul>
       </nav>
     </header>
 
-    <h1>MoviePass</h1>
+    <h1 class="text-teal-400 text-5xl mt-6 md:mt-12">MoviePass</h1>
     <p>
       Create movie lists (and share them with your friends... when I get around
       to adding the functionality)
     </p>
 
-    <section class="upcoming">
-      <p>Features to add:</p>
-      <ul>
-        <li>
-          (Current task) Update homepage and login/logout pages -- add more
-          information
-        </li>
+    <section
+      class="flex flex-col justify-center items-center mt-12 px-6 md:px-0"
+    >
+      <p class="text-lg underline">Features to add:</p>
+      <ul class="text-left list-disc max-w-lg">
+        <li>(Currently) Styling site with TailwindCSS</li>
+        <li>Update homepage and login/logout pages -- add more information</li>
         <li>Give user feedback when adding to/removing from list</li>
-        <li>
-          Design frontend of site using Tailwind (possibly rewrite in React)
-        </li>
         <li>Create shareable lists</li>
         <li>Possibly add TV Shows and Anime lists</li>
         <li>Community lists (Upvote based?)</li>
       </ul>
-    </section>
 
-    <section class="changelog">
-      <h2>Changelog:</h2>
+      <h2 class="text-lg mt-6 underline">Changelog:</h2>
 
-      <h4>09/06/2022</h4>
-      <ul>
-        <li>Update site name</li>
+      <h4 class="my-4">09/06/2022</h4>
+      <ul class="text-left list-disc max-w-lg">
+        <li>Began styling site with TailwindCSS</li>
         <li>
           Change "Add to List" button to "Remove from List" if movie exists in
           your list
         </li>
+        <li>Update site name</li>
       </ul>
 
-      <h4>09/02/2022</h4>
-      <ul>
+      <h4 class="my-4">09/02/2022</h4>
+      <ul class="text-left list-disc max-w-lg">
         <li>
           Migrated from
           <a href="https://www.omdbapi.com/">OMDb API</a> to
@@ -71,5 +65,9 @@
         </li>
       </ul>
     </section>
+
+    <footer class="py-6 px-12 mt-12 w-full bg-neutral-700">
+      <h3>Created by <a href="https://kylerriggs.com">Kyler Riggs</a></h3>
+    </footer>
   </body>
 </html>
