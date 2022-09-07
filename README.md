@@ -25,9 +25,9 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
 
 # To Do
 
+- Style pages using Tailwind CSS (possibly rewrite frontend using React)
 - Give user feedback when adding to/removing from list
 - Update homepage and login/logout pages -- add more information
-- Style pages using Tailwind CSS (possibly rewrite frontend using React)
 - Add watch list
 - Create shareable lists
 - Possibly add TV Shows and Anime lists
