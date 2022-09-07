@@ -594,6 +594,9 @@ video {
 .h-screen {
   height: 100vh;
 }
+.h-auto {
+  height: auto;
+}
 .w-3 {
   width: 0.75rem;
 }
