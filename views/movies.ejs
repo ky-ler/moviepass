@@ -11,7 +11,13 @@
     <header class="py-6 px-12 bg-neutral-700">
       <nav class="flex justify-center md:justify-end items-center">
         <ul class="flex">
-          <li><a href="/logout" class="p-2">Log Out</a></li>
+          <li>
+            <a
+              href="/logout"
+              class="p-2 hover:text-teal-400 hover:transition-color hover:duration-300 motion-reduce:hover:transition-none"
+              >Log Out</a
+            >
+          </li>
         </ul>
       </nav>
     </header>
@@ -29,7 +35,7 @@
       <input
         type="submit"
         value="Search"
-        class="bg-neutral-700 my-4 py-2 px-4 rounded-2xl"
+        class="bg-neutral-700 my-4 py-2 px-4 rounded-2xl hover:bg-neutral-600 active:bg-neutral-800 hover:transition-color active:transition-color duration-300 motion-reduce:transition-none"
       />
     </form>
 
@@ -40,7 +46,7 @@
           <a
             href="/movies/search?movieName=<%= movie.movieTitle %>"
             class="underline"
-            ><%=movie.movieTitle%> <% if (movie.movieYear) { %>
+            ><%=movie.movieTitle%> <% if (movie.movieYear != -1) { %>
             (<%=movie.movieYear%>)<% } %></a
           ><span class="del text-teal-400"> (Click here to Delete)</span>
         </li>
@@ -49,7 +55,14 @@
     </div>
 
     <footer class="py-6 px-12 mt-12 w-full bg-neutral-700">
-      <h3>Created by <a href="https://kylerriggs.com">Kyler Riggs</a></h3>
+      <h3>
+        Created by
+        <a
+          href="https://kylerriggs.com"
+          class="hover:text-teal-400 hover:transition-color hover:duration-300 motion-reduce:hover:transition-none"
+          >Kyler Riggs</a
+        >
+      </h3>
     </footer>
 
     <script src="js/main.js"></script>

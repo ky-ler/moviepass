@@ -570,6 +570,9 @@ video {
 .mb-0 {
   margin-bottom: 0px;
 }
+.mb-auto {
+  margin-bottom: auto;
+}
 .block {
   display: block;
 }
@@ -596,6 +599,17 @@ video {
 }
 .h-auto {
   height: auto;
+}
+.h-full {
+  height: 100%;
+}
+.h-max {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+.h-5 {
+  height: 1.25rem;
 }
 .w-3 {
   width: 0.75rem;
@@ -641,8 +655,14 @@ video {
 .flex-wrap {
   flex-wrap: wrap;
 }
+.items-start {
+  align-items: flex-start;
+}
 .items-center {
   align-items: center;
+}
+.justify-start {
+  justify-content: flex-start;
 }
 .justify-end {
   justify-content: flex-end;
@@ -659,6 +679,9 @@ video {
 .divide-black > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-divide-opacity));
+}
+.self-start {
+  align-self: flex-start;
 }
 .self-center {
   align-self: center;
@@ -799,6 +822,22 @@ video {
 .outline {
   outline-style: solid;
 }
+.transition-colors {
+  transition-property: color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-none {
+  transition-property: none;
+}
+.duration-500 {
+  transition-duration: 500ms;
+}
+.duration-300 {
+  transition-duration: 300ms;
+}
 
 @font-face {
   font-family: 'poppinsregular';
@@ -871,6 +910,41 @@ nav {
 
 .card {
   max-width: 200px;
+}
+
+.hover\:bg-neutral-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(82 82 82 / var(--tw-bg-opacity));
+}
+
+.hover\:text-teal-400:hover {
+  --tw-text-opacity: 1;
+  color: rgb(45 212 191 / var(--tw-text-opacity));
+}
+
+.hover\:text-teal-100:hover {
+  --tw-text-opacity: 1;
+  color: rgb(204 251 241 / var(--tw-text-opacity));
+}
+
+.hover\:duration-300:hover {
+  transition-duration: 300ms;
+}
+
+.active\:bg-neutral-800:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(38 38 38 / var(--tw-bg-opacity));
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .motion-reduce\:transition-none {
+    transition-property: none;
+  }
+
+  .motion-reduce\:hover\:transition-none:hover {
+    transition-property: none;
+  }
 }
 
 @media (min-width: 768px) {
