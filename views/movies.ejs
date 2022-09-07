@@ -40,7 +40,8 @@
           <a
             href="/movies/search?movieName=<%= movie.movieTitle %>"
             class="underline"
-            ><%=movie.movieTitle%></a
+            ><%=movie.movieTitle%> <% if (movie.movieYear) { %>
+            (<%=movie.movieYear%>)<% } %></a
           ><span class="del text-teal-400"> (Click here to Delete)</span>
         </li>
         <% }) %>
