@@ -29,31 +29,14 @@
       </nav>
     </header>
 
-    <form action="/movies/search" method="get" class="mt-6 px-8">
-      <label for="movieName">Search for a movie: </label>
-      <input
-        type="search"
-        name="movieName"
-        placeholder="Movie Title"
-        class="py-2 px-4 text-neutral-900 rounded-2xl"
-      />
-      <input
-        type="submit"
-        value="Search"
-        class="bg-neutral-700 my-4 py-2 px-4 rounded-2xl hover:bg-neutral-600 active:bg-neutral-800 hover:transition-color active:transition-color duration-300 motion-reduce:transition-none"
-      />
-    </form>
-
-    <% if (!movies.length) { %>
+    <%- include('partials/searchmovies') -%> <% if (!movies.length) { %>
     <div class="ju">
       <h2 class="text-2xl md:text-4xl mt-6 md:mt-12">Movie not found</h2>
     </div>
     <% } else { %>
-
     <h2 class="text-2xl md:text-4xl mt-6 md:mt-12">
       Results for <span class="text-teal-400">'<%= movieName %>'</span>
     </h2>
-
     <section class="flex justify-around items-center mt-4 md:mt-12 h-auto">
       <div
         class="results flex flex-col md:flex-row justify-around items-center flex-wrap text-center md:w-3/5"
@@ -85,9 +68,8 @@
         </div>
         <% } %> <% } %>
       </div>
-      <% } %>
     </section>
-
+    <% } %>
     <script src="/js/main.js"></script>
   </body>
 </html>
