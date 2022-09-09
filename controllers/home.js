@@ -1,5 +1,7 @@
 module.exports = {
-    getIndex: (req, res) => {
-        res.render('index.ejs')
-    },
-}
+  getIndex: (req, res) => {
+    if (req.user) {
+      res.redirect("/movies");
+    } else res.render("index.ejs");
+  },
+};
