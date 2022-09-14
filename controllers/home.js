@@ -4,4 +4,7 @@ module.exports = {
       res.redirect("/movies");
     } else res.render("index.ejs");
   },
+  getChangelog: (req, res) => {
+    res.render("changelog.ejs");
+  },
 };

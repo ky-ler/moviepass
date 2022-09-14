@@ -1,28 +1,28 @@
-const fetch = require('node-fetch')
+const fetch = require("node-fetch");
 
-const Movie = require('../models/Movies')
+const Movie = require("../models/Movies");
 
 module.exports = {
   getMovies: async (req, res) => {
-    console.log(req.body)
+    console.log(req.body);
     try {
-      const movies = await Movie.find({ userId: req.user.id })
+      const movies = await Movie.find({ userId: req.user.id });
       // const movieYear = await Movie.find(movies.movieYear)
       // console.log(movies)
       const moviesLeft = await Movie.countDocuments({
         userId: req.user.id,
-      })
-      res.render('movies.ejs', {
+      });
+      res.render("movies.ejs", {
         movies: movies,
         moviesLeft: moviesLeft,
         user: req.user,
-      })
+      });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   },
   addMovie: async (req, res) => {
-    console.log(req.body)
+    console.log(req);
     try {
       if (
         !(await Movie.findOne({
@@ -35,39 +35,39 @@ module.exports = {
           movieTitle: req.body.movieTitle,
           movieYear: req.body.movieYear,
           userId: req.user._id,
-        })
-        console.log('Movie has been added!')
-        res.redirect('/movies')
+        });
+        console.log("Movie has been added!");
+        res.redirect("/movies");
       } else {
         await Movie.findOneAndDelete({
           movieId: req.body.movieId,
           userId: req.user._id,
-        })
-        console.log('Movie has been deleted!')
-        res.redirect('/movies')
+        });
+        console.log("Movie has been deleted!");
+        res.redirect("/movies");
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   },
   deleteMovie: async (req, res) => {
-    console.log(req.body.movieIdFromJSFile)
+    // console.log(req.body.movieIdFromJSFile)
     try {
-      await Movie.findOneAndDelete({ _id: req.body.movieIdFromJSFile })
-      console.log('Deleted Movie')
-      res.json('Deleted It')
+      await Movie.deleteOne({ _id: req.params.id });
+      console.log("Deleted Movie");
+      res.redirect("/movies");
     } catch (err) {
-      console.log(err)
+      res.redirect("/movies");
     }
   },
   searchMovies: async (req, res) => {
-    console.log(req.query)
-    const movieTitle = req.query.movieName
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&language=en-US&query=${movieTitle}'`
+    console.log(req.query);
+    const movieTitle = req.query.movieName;
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&language=en-US&query=${movieTitle}'`;
 
     try {
-      const response = await fetch(url)
-      const data = await response.json()
+      const response = await fetch(url);
+      const data = await response.json();
 
       for (const movie of data.results) {
         if (
@@ -76,18 +76,18 @@ module.exports = {
             userId: req.user._id,
           }))
         ) {
-          movie.onList = false
+          movie.onList = false;
         } else {
-          movie.onList = true
+          movie.onList = true;
         }
       }
 
-      res.render('movieSearch.ejs', {
+      res.render("movieSearch.ejs", {
         movies: data.results,
         movieName: req.query.movieName,
-      })
+      });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   },
-}
+};

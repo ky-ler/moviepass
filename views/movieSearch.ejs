@@ -9,7 +9,16 @@
   </head>
   <body class="bg-neutral-900 text-white text-center">
     <header class="py-6 px-12 bg-neutral-700">
-      <nav class="flex justify-center md:justify-end items-center">
+      <nav class="flex justify-center md:justify-around items-center">
+        <ul class="flex">
+          <li>
+            <a
+              href="/changelog"
+              class="p-2 hover:text-teal-400 hover:transition-color hover:duration-300 motion-reduce:hover:transition-none"
+              >Changelog</a
+            >
+          </li>
+        </ul>
         <ul class="flex">
           <li class="mr-2">
             <a
@@ -30,46 +39,66 @@
     </header>
 
     <%- include('partials/searchmovies') -%> <% if (!movies.length) { %>
-    <div class="ju">
+    <div>
       <h2 class="text-2xl md:text-4xl mt-6 md:mt-12">Movie not found</h2>
     </div>
     <% } else { %>
     <h2 class="text-2xl md:text-4xl mt-6 md:mt-12">
       Results for <span class="text-teal-400">'<%= movieName %>'</span>
     </h2>
-    <section class="flex justify-around items-center mt-4 md:mt-12 h-auto">
+    <main class="flex justify-around items-center mt-4 md:mt-12 h-auto">
       <div
-        class="results flex flex-col md:flex-row justify-around items-center flex-wrap text-center md:w-3/5"
+        class="results flex flex-col md:flex-row justify-around items-stretch flex-wrap text-center md:w-3/5"
       >
         <% for (let i = 0; i < 15; i++) { %> <% if (movies[i]) { %>
         <div
-          class="card flex flex-col justify-center items-center my-8 p-6 bg-neutral-700 rounded-2xl"
+          class="card flex flex-col items-stretch justify-center my-8 p-6 bg-neutral-700 rounded-2xl"
           id="<%= movies[i].id %>"
         >
-          <h2 class="h-20 align-middle">
-            <a href="https://www.themoviedb.org/movie/<%= movies[i].id %>">
+          <h2 class="my-auto">
+            <a
+              href="https://www.themoviedb.org/movie/<%= movies[i].id %>"
+              class=""
+            >
               <%= movies[i].title %> <% if (movies[i].release_date) { %> (<%=
               movies[i].release_date.split('-')[0] %>) <% } %>
             </a>
           </h2>
           <img
-            class="movie-poster"
+            class="movie-poster mt-4"
             src="https://image.tmdb.org/t/p/original<%= movies[i].poster_path %>"
             onerror="this.src='../img/not-found.png'; this.alt='movie poster not found'"
             alt="<%= movies[i].title %> Movie Poster"
           />
-          <button
-            class="<%= movies[i].id %> mt-2 md:mt-4"
-            onclick="addMovie(<%= movies[i].id %>, '<%= movies[i].title %>', <% if (movies[i].release_date) { %> <%=
-              movies[i].release_date.split('-')[0] %> <% } %>)"
-          >
-            <%= movies[i].onList == false ? 'Add to List' : 'Remove from List'%>
-          </button>
+          <form action="../movies/addMovie" method="post" class="inline mt-4">
+            <input type="hidden" name="movieId" value="<%= movies[i].id %>" />
+            <input
+              type="hidden"
+              name="movieTitle"
+              value="<%= movies[i].title %>"
+            />
+            <input
+              type="hidden"
+              name="movieYear"
+              value="<% if (movies[i].release_date) { %> <%=
+              movies[i].release_date.split('-')[0] %> <% } %>"
+            />
+            <button type="submit" class="<%= movies[i].id %> mt-auto">
+              <iconify-icon
+                inline
+                icon="<%= movies[i].onList == false ? 'ci:list-plus' : 'ci:list-minus' %>"
+                width="36"
+                height="36"
+                class="md:text-2xl"
+                aria-label="<%= movies[i].onList == false ? 'add movie to list' : 'remove movie from list' %>"
+              ></iconify-icon>
+            </button>
+          </form>
         </div>
         <% } %> <% } %>
       </div>
-    </section>
+    </main>
     <% } %>
-    <script src="/js/main.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
   </body>
 </html>
