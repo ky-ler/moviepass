@@ -7,14 +7,14 @@
     <title>My List | MoviePass</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body class="bg-neutral-900 text-white text-center">
-    <header class="py-6 px-12 bg-neutral-700">
+  <body class="bg-darkest-grey text-off-white text-center">
+    <header class="py-6 px-12 bg-darker-grey">
       <nav class="flex justify-center md:justify-around items-center">
         <ul class="flex">
           <li>
             <a
               href="/changelog"
-              class="p-2 hover:text-teal-400 hover:transition-color hover:duration-300 motion-reduce:hover:transition-none"
+              class="p-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
               >Changelog</a
             >
           </li>
@@ -23,7 +23,7 @@
           <li>
             <a
               href="/logout"
-              class="p-2 hover:text-teal-400 hover:transition-color hover:duration-300 motion-reduce:hover:transition-none"
+              class="p-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
               >Log Out</a
             >
           </li>
@@ -31,7 +31,9 @@
       </nav>
     </header>
 
-    <h1 class="text-teal-400 text-2xl md:text-5xl mt-6 md:mt-12">My List</h1>
+    <h1 class="text-teal text-2xl tracking-tighter md:text-5xl mt-6 md:mt-12">
+      My List
+    </h1>
 
     <%- include('partials/searchmovies') -%>
 
@@ -43,7 +45,7 @@
         <li class="movieName list-disc my-2" data-id="<%=movie._id%>">
           <a
             href="/movies/search?movieName=<%= movie.movieTitle %>"
-            class="underline"
+            class="underline underline-offset-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
             ><%=movie.movieTitle%> <% if (movie.movieYear != -1) { %>
             (<%=movie.movieYear%>)<% } %></a
           >
@@ -56,7 +58,7 @@
               <iconify-icon
                 inline
                 icon="ci:trash-full"
-                class="text-xl md:text-2xl"
+                class="text-xl md:text-2xl hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
                 aria-label="remove movie from list"
               ></iconify-icon>
             </button>

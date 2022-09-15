@@ -66,6 +66,11 @@ module.exports = {
     const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&language=en-US&query=${movieTitle}'`;
 
     try {
+      // Todo: Error handle empty query
+      // if (movieTitle.length < 1) {
+      //   res.redirect("back");
+      // }
+
       const response = await fetch(url);
       const data = await response.json();
 

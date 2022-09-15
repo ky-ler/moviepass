@@ -19,7 +19,7 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
   - PORT=2121 (can be any port example: 3000)
   - DB_STRING=`your database URI`
   - API_KEY=`your TMDB API key`
-  - NODE_ENV=`dev` or `prod`
+  - NODE_ENV=`dev` or `production`
 
 ---
 

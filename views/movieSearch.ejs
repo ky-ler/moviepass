@@ -7,14 +7,14 @@
     <title>Search | MoviePass</title>
     <link rel="stylesheet" href="../css/style.css" />
   </head>
-  <body class="bg-neutral-900 text-white text-center">
-    <header class="py-6 px-12 bg-neutral-700">
+  <body class="bg-darkest-grey text-off-white text-center">
+    <header class="py-6 px-12 bg-darker-grey">
       <nav class="flex justify-center md:justify-around items-center">
         <ul class="flex">
           <li>
             <a
               href="/changelog"
-              class="p-2 hover:text-teal-400 hover:transition-color hover:duration-300 motion-reduce:hover:transition-none"
+              class="p-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
               >Changelog</a
             >
           </li>
@@ -23,14 +23,14 @@
           <li class="mr-2">
             <a
               href="/movies"
-              class="p-2 hover:text-teal-400 hover:transition-color hover:duration-300 motion-reduce:hover:transition-none"
+              class="p-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
               >My List</a
             >
           </li>
           <li>
             <a
               href="/logout"
-              class="p-2 hover:text-teal-400 hover:transition-color hover:duration-300 motion-reduce:hover:transition-none"
+              class="p-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
               >Log Out</a
             >
           </li>
@@ -44,7 +44,7 @@
     </div>
     <% } else { %>
     <h2 class="text-2xl md:text-4xl mt-6 md:mt-12">
-      Results for <span class="text-teal-400">'<%= movieName %>'</span>
+      Results for <span class="text-teal">'<%= movieName %>'</span>
     </h2>
     <main class="flex justify-around items-center mt-4 md:mt-12 h-auto">
       <div
@@ -52,7 +52,7 @@
       >
         <% for (let i = 0; i < 15; i++) { %> <% if (movies[i]) { %>
         <div
-          class="card flex flex-col items-stretch justify-center my-8 p-6 bg-neutral-700 rounded-2xl"
+          class="card flex flex-col items-stretch justify-center my-8 p-6 bg-darker-grey rounded-2xl"
           id="<%= movies[i].id %>"
         >
           <h2 class="my-auto">
@@ -89,7 +89,7 @@
                 icon="<%= movies[i].onList == false ? 'ci:list-plus' : 'ci:list-minus' %>"
                 width="36"
                 height="36"
-                class="md:text-2xl"
+                class="md:text-2xl hover:-translate-y-0.5 active:-translate-y-1 hover:transition-transform active:transition-all duration-300 motion-reduce:hover:-translate-y-0 motion-reduce:active:-translate-y-0"
                 aria-label="<%= movies[i].onList == false ? 'add movie to list' : 'remove movie from list' %>"
               ></iconify-icon>
             </button>
