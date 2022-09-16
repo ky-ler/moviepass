@@ -74,7 +74,7 @@
         <% movies.forEach( movie => { %>
         <li class="movieName list-disc my-2" data-id="<%=movie._id%>">
           <a
-            href="/search?movieName=<%= movie.movieTitle %>"
+            href="https://www.themoviedb.org/movie/<%= movie.movieId %>"
             class="underline underline-offset-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
             ><%=movie.movieTitle%> <% if (movie.movieYear != -1) { %>
             (<%=movie.movieYear%>)<% } %></a
