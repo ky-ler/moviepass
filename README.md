@@ -1,8 +1,10 @@
-# Introduction
+# MoviePass
 
-A Simple Movies List App using MVC architecture, user authentication, and [TMDB's API](https://www.themoviedb.org/).
+Create movie lists and share them with your friends. 
 
-> View live deployment [here](https://moviepass.up.railway.app/)
+Created using MVC architecture, user authentication, and [TMDB's API](https://www.themoviedb.org/).
+
+> View live deployment [here](https://moviepass.freezi.me/)
 
 ---
 
@@ -25,10 +27,6 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
 
 # To Do
 
-- Style pages using Tailwind CSS (possibly rewrite frontend using React)
-- Give user feedback when adding to/removing from list
-- Update homepage and login/logout pages -- add more information
-- Add watch list
-- Create shareable lists
-- Possibly add TV Shows and Anime lists
+- (Ongoing) Style pages using Tailwind CSS
 - Community lists (Upvote based?)
+- Possibly add TV Shows and Anime lists
