@@ -91,6 +91,7 @@
                 icon="ci:trash-full"
                 class="text-xl md:text-2xl hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
                 aria-label="remove movie from list"
+                onclick="return confirm('Are you sure you want to delete this movie from your list: <%= listTitle %>?')"
               ></iconify-icon>
             </button>
           </form>

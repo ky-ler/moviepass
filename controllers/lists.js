@@ -4,7 +4,7 @@ const User = require("../models/User");
 
 module.exports = {
   getAll: async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     try {
       const lists = await List.find({ userId: req.user.id });
       const allLists = await List.countDocuments({
@@ -78,28 +78,38 @@ module.exports = {
       console.log(err);
     }
   },
-  deleteList: async (req, res) => {
-    // console.log(req);
+  deleteList: async (req, res, next) => {
+    const lists = await List.find({ userId: req.user.id });
+    const allLists = await List.countDocuments({
+      userId: req.user.id,
+    });
     try {
-      await List.deleteOne({ userId: req.user.id, _id: req.params.id });
-      await Movie.deleteMany({ userId: req.user.id, listId: req.params.id });
+      if ((await List.countDocuments({ userId: req.user.id })) >= 2) {
+        await List.deleteOne({ userId: req.user.id, _id: req.params.id });
+        await Movie.deleteMany({ userId: req.user.id, listId: req.params.id });
 
-      if (!(await List.findOne({ userId: req.user.id }))) {
-        return;
+        if (!(await List.findOne({ userId: req.user.id }))) {
+          return;
+        } else {
+          await List.findOneAndUpdate({ userId: req.user.id }, [
+            { $set: { isActive: true } },
+          ]);
+          let active = await List.findOne({
+            userId: req.user.id,
+            isActive: true,
+          });
+          console.log(`Made list: ${active.listTitle} active`);
+        }
+        console.log("Deleted List");
       } else {
-        await List.findOneAndUpdate({ userId: req.user.id }, [
-          { $set: { isActive: true } },
-        ]);
-        let active = await List.findOne({
-          userId: req.user.id,
-          isActive: true,
-        });
-        console.log(`Made list: ${active.listTitle} active`);
+        console.log("Cannot delete list if only 1 list exists");
+        throw new Error("Cannot delete list if only one list exists");
       }
-      console.log("Deleted List");
       res.redirect("/lists");
     } catch (err) {
-      res.redirect("/lists");
+      console.log(err);
+      //   next(err);
+      res.render("error", { error: err });
     }
   },
   makeActive: async (req, res) => {

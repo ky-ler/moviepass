@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoviePass</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+  </head>
+  <body class="bg-darkest-grey text-off-white text-center px-8 py-12">
+    <% if (error == 'Error: Cannot delete list if only one list exists') { %>
+    <h2 id="one-list-error" class="mt-12 text-xl"><%= error %></h2>
+    <% } %>
+    <h4 class="mt-12">
+      <a
+        href="javascript:history.back()"
+        class="hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
+        >Click here to go back</a
+      >
+    </h4>
+  </body>
+</html>
