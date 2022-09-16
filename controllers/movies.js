@@ -82,7 +82,7 @@ module.exports = {
       userId: req.user.id,
       isActive: true,
     });
-    // console.log(activeList.id);
+    console.log(activeList);
 
     try {
       // Todo: Error handle empty query
@@ -90,40 +90,44 @@ module.exports = {
       //   res.redirect("back");
       // }
 
-      const response = await fetch(url);
-      const data = await response.json();
-      // console.log(req.user);
-      let userId = -1;
-      if (req.user) {
-        userId = req.user.id;
-      }
-
-      for (const movie of data.results) {
-        if (req.user) {
-          if (
-            !(await Movie.findOne({
-              movieId: movie.id,
-              userId: req.user.id,
-              listId: activeList.id,
-            }))
-          ) {
-            movie.onList = false;
-          } else {
-            movie.onList = true;
-          }
-        }
-      }
-      console.log(req.query.movieName);
-      if (req.query.movieName === undefined) {
+      if (!activeList) {
         res.redirect("/lists");
       } else {
-        res.render("movieSearch.ejs", {
-          activeList: activeList.listTitle,
-          activeId: activeList.id,
-          movies: data.results,
-          movieName: req.query.movieName,
-          user: req.user,
-        });
+        const response = await fetch(url);
+        const data = await response.json();
+        // console.log(req.user);
+        let userId = -1;
+        if (req.user) {
+          userId = req.user.id;
+        }
+
+        for (const movie of data.results) {
+          if (req.user) {
+            if (
+              !(await Movie.findOne({
+                movieId: movie.id,
+                userId: req.user.id,
+                listId: activeList.id,
+              }))
+            ) {
+              movie.onList = false;
+            } else {
+              movie.onList = true;
+            }
+          }
+        }
+        console.log(req.query.movieName);
+        if (req.query.movieName === undefined) {
+          res.redirect("/lists");
+        } else {
+          res.render("movieSearch.ejs", {
+            activeList: activeList.listTitle,
+            activeId: activeList.id,
+            movies: data.results,
+            movieName: req.query.movieName,
+            user: req.user,
+          });
+        }
       }
     } catch (err) {
       console.log(err);
