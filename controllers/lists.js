@@ -22,7 +22,7 @@ module.exports = {
   getList: async (req, res) => {
     // console.log(req.user);
     const moviesOnList = await Movie.find({ listId: req.params.id });
-    let listInfo = await List.find({ _id: req.params.id });
+    let listInfo = await List.find({ userId: req.user.id, _id: req.params.id });
     let listUser = await User.findOne({ userId: req.params.id });
     let isAuthed;
     let isActive;
@@ -74,8 +74,8 @@ module.exports = {
   deleteList: async (req, res) => {
     // console.log(req);
     try {
-      await List.deleteOne({ _id: req.params.id });
-      await Movie.deleteMany({ listId: req.params.id });
+      await List.deleteOne({ userId: req.user.id, _id: req.params.id });
+      await Movie.deleteMany({ userId: req.user.id, listId: req.params.id });
       console.log("Deleted List");
       res.redirect("/lists");
     } catch (err) {
@@ -85,12 +85,12 @@ module.exports = {
   makeActive: async (req, res) => {
     console.log(req.params);
     try {
-      await List.findOneAndUpdate({ isActive: true }, [
+      await List.findOneAndUpdate({ userId: req.user.id, isActive: true }, [
         {
           $set: { isActive: false },
         },
       ]);
-      await List.findOneAndUpdate({ _id: req.params.id }, [
+      await List.findOneAndUpdate({ userId: req.user.id, _id: req.params.id }, [
         { $set: { isActive: true } },
       ]);
 
