@@ -25,11 +25,11 @@ module.exports = {
     let listInfo = await List.find({ _id: req.params.id });
     let listUser = await User.findOne({ userId: req.params.id });
     let isAuthed;
-    let isActive;
-    console.log(listInfo);
+
+    console.log(listInfo[0].userId);
 
     if (req.user) {
-      isAuthed = listUser.id == req.user.id;
+      isAuthed = listInfo[0].userId == req.user.id;
     } else {
       isAuthed = false;
     }
@@ -46,6 +46,7 @@ module.exports = {
           isAuthed: isAuthed,
           isActive: listInfo[0].isActive,
         });
+        // console.log(isAuthed && listInfo[0].isActive);
       }
     } catch (err) {
       console.log(err);
