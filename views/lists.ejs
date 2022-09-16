@@ -42,7 +42,11 @@
       <ul class="text-left px-6">
         <% lists.forEach( list => { %>
         <li class="listName list-disc my-2" data-id="<%=list._id%>">
-          <a href="/lists/<%= list.id %>"><%=list.listTitle%></a>
+          <a
+            href="/lists/<%= list.id %>"
+            class="hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
+            ><%=list.listTitle%></a
+          >
 
           <form
             action="/lists/deleteList/<%= list.id %>?_method=DELETE"
