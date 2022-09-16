@@ -81,6 +81,19 @@ module.exports = {
     try {
       await List.deleteOne({ userId: req.user.id, _id: req.params.id });
       await Movie.deleteMany({ userId: req.user.id, listId: req.params.id });
+
+      if (!(await List.findOne({ userId: req.user.id }))) {
+        return;
+      } else {
+        await List.findOneAndUpdate({ userId: req.user.id }, [
+          { $set: { isActive: true } },
+        ]);
+        let active = await List.findOne({
+          userId: req.user.id,
+          isActive: true,
+        });
+        console.log(`Made list: ${active.listTitle} active`);
+      }
       console.log("Deleted List");
       res.redirect("/lists");
     } catch (err) {
