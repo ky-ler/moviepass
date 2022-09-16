@@ -20,11 +20,12 @@
           </li>
         </ul>
         <ul class="flex">
-          <li class="mr-2">
+          <% if (user !== undefined) { %>
+          <li>
             <a
-              href="/movies"
+              href="/lists"
               class="p-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
-              >My List</a
+              >My Lists</a
             >
           </li>
           <li>
@@ -34,6 +35,22 @@
               >Log Out</a
             >
           </li>
+          <% } else { %>
+          <li>
+            <a
+              href="/login"
+              class="p-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
+              >Login</a
+            >
+          </li>
+          <li>
+            <a
+              href="/signup"
+              class="p-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
+              >Sign Up</a
+            >
+          </li>
+          <% } %>
         </ul>
       </nav>
     </header>
@@ -46,6 +63,16 @@
     <h2 class="text-2xl md:text-4xl mt-6 md:mt-12">
       Results for <span class="text-teal">'<%= movieName %>'</span>
     </h2>
+    <% if (user !== undefined) { %>
+    <h3 class="mt-6">
+      Currently Active List:
+      <a
+        href="/lists/<%= activeId %>"
+        class="underline underline-offset-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
+        ><%= activeList %></a
+      >
+    </h3>
+    <% } %>
     <main class="flex justify-around items-center mt-4 md:mt-12 h-auto">
       <div
         class="results flex flex-col md:flex-row justify-around items-stretch flex-wrap text-center md:w-3/5"
@@ -70,6 +97,7 @@
             onerror="this.src='../img/not-found.png'; this.alt='movie poster not found'"
             alt="<%= movies[i].title %> Movie Poster"
           />
+          <% if (user !== undefined) { %>
           <form action="../movies/addMovie" method="post" class="inline mt-4">
             <input type="hidden" name="movieId" value="<%= movies[i].id %>" />
             <input
@@ -94,6 +122,7 @@
               ></iconify-icon>
             </button>
           </form>
+          <% } %>
         </div>
         <% } %> <% } %>
       </div>

@@ -1,7 +1,7 @@
 module.exports = {
   getIndex: (req, res) => {
     if (req.user) {
-      res.redirect("/movies");
+      res.redirect("/lists");
     } else res.render("index.ejs");
   },
   getChangelog: (req, res) => {

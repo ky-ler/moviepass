@@ -2,7 +2,7 @@
 
 A Simple Movies List App using MVC architecture, user authentication, and [TMDB's API](https://www.themoviedb.org/).
 
-> View live deployment [here](https://movie-pass-production.up.railway.app/)
+> View live deployment [here](https://moviepass.up.railway.app/)
 
 ---
 

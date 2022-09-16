@@ -1,14 +1,14 @@
-<form action="/search" method="get" class="mt-6 px-8">
-  <label for="movieName">Search for a movie: </label>
+<form action="/lists/createList" method="post" class="mt-6 px-8">
+  <label for="listTitle">Create a new list: </label>
   <input
     type="search"
-    name="movieName"
-    placeholder="Movie Title"
+    name="listTitle"
+    placeholder="List Name"
     class="py-2 px-4 text-darkest-grey rounded-2xl"
   />
   <input
     type="submit"
-    value="Search"
+    value="Create"
     class="bg-transparent border-2 border-teal my-6 py-2 px-4 rounded-2xl hover:border-med-teal active:border-dark-teal hover:-translate-y-0.5 active:-translate-y-1 hover:transition-transform active:transition-all duration-300 motion-reduce:hover:-translate-y-0 motion-reduce:active:-translate-y-0"
   />
 </form>

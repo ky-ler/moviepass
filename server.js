@@ -10,6 +10,8 @@ const logger = require("morgan");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const movieRoutes = require("./routes/movies");
+const searchRoutes = require("./routes/search");
+const listRoutes = require("./routes/lists");
 
 // require('dotenv').config({ path: './config/.env' })
 require("dotenv").config();
@@ -49,6 +51,8 @@ app.use(flash());
 
 app.use("/", mainRoutes);
 app.use("/movies", movieRoutes);
+app.use("/search", searchRoutes);
+app.use("/lists", listRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

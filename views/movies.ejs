@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My List | MoviePass</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <title><%= listTitle %> | MoviePass</title>
+    <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body class="bg-darkest-grey text-off-white text-center">
     <header class="py-6 px-12 bg-darker-grey">
@@ -20,6 +20,14 @@
           </li>
         </ul>
         <ul class="flex">
+          <% if (user !== undefined) { %>
+          <li>
+            <a
+              href="/lists"
+              class="p-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
+              >My Lists</a
+            >
+          </li>
           <li>
             <a
               href="/logout"
@@ -27,28 +35,51 @@
               >Log Out</a
             >
           </li>
+          <% } else { %>
+          <li>
+            <a
+              href="/login"
+              class="p-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
+              >Login</a
+            >
+          </li>
+          <li>
+            <a
+              href="/signup"
+              class="p-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
+              >Sign Up</a
+            >
+          </li>
+          <% } %>
         </ul>
       </nav>
     </header>
 
     <h1 class="text-teal text-2xl tracking-tighter md:text-5xl mt-6 md:mt-12">
-      My List
+      <%= listTitle %>
     </h1>
-
-    <%- include('partials/searchmovies') -%>
+    <% if (user !== undefined && isAuthed && !isActive) { %>
+    <form action="/lists/makeActive/<%= listId %>?_method=PUT" method="post">
+      <button>Make <%= listTitle %> your active list</button>
+    </form>
+    <% } else if (user !== undefined && isAuthed && isActive) { %>
+    <h3 class="italic">Your Currently Active List</h3>
+    <% } %> <% if (user !== undefined) { %> <%- include('partials/searchmovies')
+    -%> <% } %>
 
     <main
       class="moviesList flex justify-center items-center mb-12 px-6 md:px-0"
     >
-      <ul class="text-left px-6">
+      <ul class="text-left mt-6 px-6">
         <% movies.forEach( movie => { %>
         <li class="movieName list-disc my-2" data-id="<%=movie._id%>">
           <a
-            href="/movies/search?movieName=<%= movie.movieTitle %>"
+            href="/search?movieName=<%= movie.movieTitle %>"
             class="underline underline-offset-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
             ><%=movie.movieTitle%> <% if (movie.movieYear != -1) { %>
             (<%=movie.movieYear%>)<% } %></a
           >
+          <% if (user !== undefined && movies[0].userId == user.id) { %>
           <form
             action="/movies/deleteMovie/<%= movie.id %>?_method=DELETE"
             method="post"
@@ -63,6 +94,7 @@
               ></iconify-icon>
             </button>
           </form>
+          <% } %>
         </li>
         <% }) %>
       </ul>
