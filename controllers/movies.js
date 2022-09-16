@@ -78,7 +78,10 @@ module.exports = {
     // console.log(req.query);
     const movieTitle = req.query.movieName;
     const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&language=en-US&query=${movieTitle}'`;
-    const activeList = await List.findOne({ isActive: true });
+    const activeList = await List.findOne({
+      userId: req.user.id,
+      isActive: true,
+    });
     // console.log(activeList.id);
 
     try {
