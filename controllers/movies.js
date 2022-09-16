@@ -13,7 +13,10 @@ module.exports = {
       const moviesLeft = await Movie.countDocuments({
         userId: req.user.id,
       });
-      const activeList = await List.findOne({ isActive: true });
+      const activeList = await List.findOne({
+        userId: req.user.id,
+        isActive: true,
+      });
       res.render("movies.ejs", {
         movies: movies,
         moviesLeft: moviesLeft,
@@ -25,7 +28,10 @@ module.exports = {
   },
   addMovie: async (req, res) => {
     // console.log(req);
-    const activeList = await List.findOne({ isActive: true });
+    const activeList = await List.findOne({
+      userId: req.user.id,
+      isActive: true,
+    });
     try {
       if (
         !(await Movie.findOne({
@@ -56,7 +62,10 @@ module.exports = {
     }
   },
   deleteMovie: async (req, res) => {
-    const activeList = await List.findOne({ isActive: true });
+    const activeList = await List.findOne({
+      userId: req.user.id,
+      isActive: true,
+    });
     try {
       await Movie.deleteOne({ _id: req.params.id });
       console.log("Deleted Movie");
