@@ -27,6 +27,7 @@ module.exports = {
     }
   },
   addMovie: async (req, res) => {
+    const url = `https://api.themoviedb.org/3/movie/${req.body.movieId}?api_key=${process.env.API_KEY}&language=en-US`;
     // console.log(req);
     const activeList = await List.findOne({
       userId: req.user.id,
@@ -40,10 +41,13 @@ module.exports = {
           listId: activeList.id,
         }))
       ) {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data.title);
         await Movie.create({
           movieId: req.body.movieId,
-          movieTitle: req.body.movieTitle,
-          movieYear: req.body.movieYear,
+          movieTitle: data.title,
+          movieYear: data.release_date.split("-")[0] || -1,
           userId: req.user._id,
           listId: activeList.id,
         });
@@ -82,7 +86,7 @@ module.exports = {
       userId: req.user.id,
       isActive: true,
     });
-    console.log(activeList);
+    // console.log(activeList);
 
     try {
       // Todo: Error handle empty query

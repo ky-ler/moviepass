@@ -100,17 +100,6 @@
           <% if (user !== undefined) { %>
           <form action="../movies/addMovie" method="post" class="inline mt-4">
             <input type="hidden" name="movieId" value="<%= movies[i].id %>" />
-            <input
-              type="hidden"
-              name="movieTitle"
-              value="<%= movies[i].title %>"
-            />
-            <input
-              type="hidden"
-              name="movieYear"
-              value="<% if (movies[i].release_date) { %> <%=
-              movies[i].release_date.split('-')[0] %> <% } %>"
-            />
             <button type="submit" class="<%= movies[i].id %> mt-auto">
               <iconify-icon
                 inline
