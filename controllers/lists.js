@@ -26,21 +26,26 @@ module.exports = {
     let listUser = await User.findOne({ userId: req.params.id });
     let isAuthed;
     let isActive;
+
     if (req.user) {
       isAuthed = listUser.id == req.user.id;
     } else {
       isAuthed = false;
     }
     try {
-      res.render("movies.ejs", {
-        listId: req.params.id,
-        listTitle: listInfo[0].listTitle,
-        listUser: listUser,
-        movies: moviesOnList,
-        user: req.user,
-        isAuthed: isAuthed,
-        isActive: listInfo[0].isActive,
-      });
+      if (listInfo.length < 1) {
+        res.redirect("/lists");
+      } else {
+        res.render("movies.ejs", {
+          listId: req.params.id,
+          listTitle: listInfo[0].listTitle,
+          listUser: listUser,
+          movies: moviesOnList,
+          user: req.user,
+          isAuthed: isAuthed,
+          isActive: listInfo[0].isActive,
+        });
+      }
     } catch (err) {
       console.log(err);
     }
