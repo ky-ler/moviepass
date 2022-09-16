@@ -22,10 +22,11 @@ module.exports = {
   getList: async (req, res) => {
     // console.log(req.user);
     const moviesOnList = await Movie.find({ listId: req.params.id });
-    let listInfo = await List.find({ userId: req.user.id, _id: req.params.id });
+    let listInfo = await List.find({ _id: req.params.id });
     let listUser = await User.findOne({ userId: req.params.id });
     let isAuthed;
     let isActive;
+    console.log(listInfo);
 
     if (req.user) {
       isAuthed = listUser.id == req.user.id;
@@ -112,7 +113,10 @@ module.exports = {
         { $set: { isActive: true } },
       ]);
 
-      let currentlyActive = await List.findOne({ isActive: true });
+      let currentlyActive = await List.findOne({
+        userId: req.user.id,
+        isActive: true,
+      });
       console.log(currentlyActive.id);
       console.log(`Made ${currentlyActive.listTitle} active`);
       res.redirect(`/lists/${req.params.id}`);
