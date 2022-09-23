@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(logger("dev"));
 
-//Use forms for put / delete
+// Use forms for put / delete
 app.use(methodOverride("_method"));
 
 // Sessions
