@@ -13,7 +13,6 @@ const movieRoutes = require("./routes/movies");
 const searchRoutes = require("./routes/search");
 const listRoutes = require("./routes/lists");
 
-// require('dotenv').config({ path: './config/.env' })
 require("dotenv").config();
 
 // Passport config
