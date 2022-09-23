@@ -14,7 +14,9 @@
           <li>
             <a
               href="/changelog"
-              class="p-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
+              class="p-2 hover:text-teal hover:transition-color
+              hover:duration-300 active:text-med-teal active:transition-colors
+              active:duration-300 motion-reduce:hover:transition-none"
               >Changelog</a
             >
           </li>
@@ -24,14 +26,18 @@
           <li>
             <a
               href="/lists"
-              class="p-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
+              class="p-2 hover:text-teal hover:transition-color
+              hover:duration-300 active:text-med-teal active:transition-colors
+              active:duration-300 motion-reduce:hover:transition-none"
               >My Lists</a
             >
           </li>
           <li>
             <a
               href="/logout"
-              class="p-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
+              class="p-2 hover:text-teal hover:transition-color
+              hover:duration-300 active:text-med-teal active:transition-colors
+              active:duration-300 motion-reduce:hover:transition-none"
               >Log Out</a
             >
           </li>
@@ -39,14 +45,18 @@
           <li>
             <a
               href="/login"
-              class="p-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
+              class="p-2 hover:text-teal hover:transition-color
+              hover:duration-300 active:text-med-teal active:transition-colors
+              active:duration-300 motion-reduce:hover:transition-none"
               >Login</a
             >
           </li>
           <li>
             <a
               href="/signup"
-              class="p-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
+              class="p-2 hover:text-teal hover:transition-color
+              hover:duration-300 active:text-med-teal active:transition-colors
+              active:duration-300 motion-reduce:hover:transition-none"
               >Sign Up</a
             >
           </li>
@@ -68,18 +78,23 @@
       Currently Active List:
       <a
         href="/lists/<%= activeId %>"
-        class="underline underline-offset-2 hover:text-teal hover:transition-color hover:duration-300 active:text-med-teal active:transition-colors active:duration-300 motion-reduce:hover:transition-none"
+        class="underline underline-offset-2 hover:text-teal
+        hover:transition-color hover:duration-300 active:text-med-teal
+        active:transition-colors active:duration-300
+        motion-reduce:hover:transition-none"
         ><%= activeList %></a
       >
     </h3>
     <% } %>
     <main class="flex justify-around items-center mt-4 md:mt-12 h-auto">
       <div
-        class="results flex flex-col md:flex-row justify-around items-stretch flex-wrap text-center md:w-3/5"
+        class="results flex flex-col md:flex-row justify-around items-stretch
+        flex-wrap text-center md:w-3/5"
       >
         <% for (let i = 0; i < 15; i++) { %> <% if (movies[i]) { %>
         <div
-          class="card flex flex-col items-stretch justify-center my-8 p-6 bg-darker-grey rounded-2xl"
+          class="card flex flex-col items-stretch justify-center my-8 p-6
+          bg-darker-grey rounded-2xl"
           id="<%= movies[i].id %>"
         >
           <h2 class="my-auto">
@@ -93,8 +108,10 @@
           </h2>
           <img
             class="movie-poster mt-4"
-            src="https://image.tmdb.org/t/p/original<%= movies[i].poster_path %>"
-            onerror="this.src='../img/not-found.png'; this.alt='movie poster not found'"
+            src="https://image.tmdb.org/t/p/original
+            <%= movies[i].poster_path %>"
+            onerror="this.src='../img/not-found.png';
+            this.alt='movie poster not found'"
             alt="<%= movies[i].title %> Movie Poster"
           />
           <% if (user !== undefined) { %>
@@ -103,11 +120,16 @@
             <button type="submit" class="<%= movies[i].id %> mt-auto">
               <iconify-icon
                 inline
-                icon="<%= movies[i].onList == false ? 'ci:list-plus' : 'ci:list-minus' %>"
+                icon="<%= movies[i].onList == false ?
+                       'ci:list-plus' : 'ci:list-minus' %>"
                 width="36"
                 height="36"
-                class="md:text-2xl hover:-translate-y-0.5 active:-translate-y-1 hover:transition-transform active:transition-all duration-300 motion-reduce:hover:-translate-y-0 motion-reduce:active:-translate-y-0"
-                aria-label="<%= movies[i].onList == false ? 'add movie to list' : 'remove movie from list' %>"
+                class="md:text-2xl hover:-translate-y-0.5 active:-translate-y-1
+                hover:transition-transform active:transition-all duration-300
+                motion-reduce:hover:-translate-y-0
+                motion-reduce:active:-translate-y-0"
+                aria-label="<%= movies[i].onList == false ?
+                             'add movie to list' : 'remove movie from list' %>"
               ></iconify-icon>
             </button>
           </form>
@@ -117,6 +139,9 @@
       </div>
     </main>
     <% } %>
-    <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
+    <script
+        src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"
+        >
+    </script>
   </body>
 </html>
