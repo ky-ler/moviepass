@@ -111,11 +111,7 @@ module.exports = {
       const response = await fetch(url);
       const data = await response.json();
       // console.log(data);
-      let userId = -1;
-      if (req.user) {
-        userId = req.user.id;
-      }
-      if (activeList !== null) {
+      if (req.user && activeList !== null) {
         activeListTitle = activeList.listTitle;
         activeListId = activeList.id;
       }
@@ -192,11 +188,7 @@ module.exports = {
       const response = await fetch(url);
       const data = await response.json();
       // console.log(req.user);
-      let userId = -1;
-      if (req.user) {
-        userId = req.user.id;
-      }
-      if (activeList !== null) {
+      if (req.user && activeList !== null) {
         activeListTitle = activeList.listTitle;
         activeListId = activeList.id;
       }
