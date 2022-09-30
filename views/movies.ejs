@@ -7,65 +7,228 @@
     <title><%= listTitle %> | MoviePass</title>
     <link rel="stylesheet" href="../css/style.css" />
   </head>
-  <body class="bg-darkest-grey text-off-white text-center">
-    <header class="py-6 px-12 bg-darker-grey">
-      <nav class="flex justify-center md:justify-around items-center">
-        <ul class="flex">
-          <li>
-            <a
-              href="/changelog"
-              class="p-2 hover:text-teal hover:transition-color
-              hover:duration-300 active:text-med-teal active:transition-colors
-              active:duration-300 motion-reduce:hover:transition-none"
-              >Changelog</a
+  <body class="text-center">
+    <header>
+      <nav class="navbar justify-around bg-base-300 shadow">
+        <div class="">
+          <div class="dropdown">
+            <label
+              tabindex="0"
+              class="swap-rotate btn btn-circle swap btn-ghost lg:hidden"
             >
-          </li>
-        </ul>
-        <ul class="flex">
-          <% if (user !== undefined) { %>
-          <li>
-            <a
-              href="/lists"
-              class="p-2 hover:text-teal hover:transition-color
-              hover:duration-300 active:text-med-teal active:transition-colors
-              active:duration-300 motion-reduce:hover:transition-none"
-              >My Lists</a
+              <!-- this hidden checkbox controls the state -->
+              <input type="checkbox" />
+
+              <!-- hamburger icon -->
+              <svg
+                class="swap-off fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
+                />
+              </svg>
+
+              <!-- close icon -->
+              <svg
+                class="swap-on fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 512 512"
+              >
+                <polygon
+                  points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"
+                />
+              </svg>
+            </label>
+            <ul
+              tabindex="0"
+              class="dropdown-content menu rounded-box menu-compact mt-3 bg-base-300 p-2 shadow"
             >
-          </li>
-          <li>
-            <a
-              href="/logout"
-              class="p-2 hover:text-teal hover:transition-color
-              hover:duration-300 active:text-med-teal active:transition-colors
-              active:duration-300 motion-reduce:hover:transition-none"
-              >Log Out</a
-            >
-          </li>
-          <% } else { %>
-          <li>
-            <a
-              href="/login"
-              class="p-2 hover:text-teal hover:transition-color
-              hover:duration-300 active:text-med-teal active:transition-colors
-              active:duration-300 motion-reduce:hover:transition-none"
-              >Login</a
-            >
-          </li>
-          <li>
-            <a
-              href="/signup"
-              class="p-2 hover:text-teal hover:transition-color
-              hover:duration-300 active:text-med-teal active:transition-colors
-              active:duration-300 motion-reduce:hover:transition-none"
-              >Sign Up</a
-            >
-          </li>
-          <% } %>
-        </ul>
+              <li tabindex="0">
+                <a class="justify-between">
+                  Movies
+                  <svg
+                    class="fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+                    />
+                  </svg>
+                </a>
+                <ul class="bg-base-300 p-2 shadow">
+                  <% if (user !== undefined) { %>
+                  <li><a href="/lists">My Lists</a></li>
+                  <% } %>
+                  <li><a href="/movies/top">Top Rated</a></li>
+                  <li><a href="/movies/popular">Popular</a></li>
+                  <li><a href="/movies/now-playing">Now Playing</a></li>
+                  <li><a href="/movies/upcoming">Upcoming</a></li>
+                </ul>
+              </li>
+              <li tabindex="0">
+                <a class="justify-between">
+                  Account
+                  <svg
+                    class="fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+                    />
+                  </svg>
+                </a>
+                <ul class="bg-base-300 p-2 shadow">
+                  <% if (user !== undefined) { %>
+                  <li><a href="/lists">My Lists</a></li>
+                  <li><a href="/logout">Log Out</a></li>
+                  <% } else { %>
+                  <li><a href="/login">Log In</a></li>
+                  <li><a href="/signup">Sign Up</a></li>
+                  <% } %>
+                </ul>
+              </li>
+              <form action="/search" method="get" class="">
+                <input
+                  type="search"
+                  required
+                  name="movieName"
+                  placeholder="Search"
+                  class="input input-bordered input-sm mb-1.5 w-full"
+                />
+                <label class="btn btn-ghost btn-sm w-full">
+                  <input type="submit" class="hidden" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                </label>
+              </form>
+            </ul>
+          </div>
+          <a
+            class="btn btn-ghost hidden text-xl normal-case text-primary lg:flex"
+            >MoviePass</a
+          >
+        </div>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="menu menu-horizontal p-0">
+            <li tabindex="0">
+              <a>
+                Movies
+                <svg
+                  class="fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                  />
+                </svg>
+              </a>
+              <ul class="z-10 bg-base-300 p-2 shadow">
+                <% if (user !== undefined) { %>
+                <li><a href="/lists">My Lists</a></li>
+                <% } %>
+                <li><a href="/movies/top">Top Rated</a></li>
+                <li><a href="/movies/popular">Popular</a></li>
+                <li><a href="/movies/now-playing">Now Playing</a></li>
+                <li><a href="/movies/upcoming">Upcoming</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="form-control">
+            <form action="/search" method="get" class="input-group">
+              <input
+                type="search"
+                required
+                name="movieName"
+                placeholder="Search for Movie"
+                class="input input-bordered"
+              />
+              <label class="btn btn-square">
+                <input type="submit" class="hidden" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="inline-block h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </label>
+            </form>
+          </div>
+        </div>
+        <div class="hidden lg:flex">
+          <ul class="menu menu-horizontal p-0">
+            <li tabindex="0">
+              <a>
+                Account
+                <svg
+                  class="fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                  />
+                </svg>
+              </a>
+              <ul class="bg-base-300 p-2 shadow">
+                <% if (user !== undefined) { %>
+                <li><a href="/lists">My Lists</a></li>
+                <li><a href="/logout">Log Out</a></li>
+                <% } else { %>
+                <li><a href="/login">Log In</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+                <% } %>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="navbar-end flex lg:hidden">
+          <a class="btn btn-ghost text-xl normal-case text-primary"
+            >MoviePass</a
+          >
+        </div>
       </nav>
     </header>
 
-    <h1 class="text-teal text-2xl tracking-tighter md:text-5xl mt-6 md:mt-12">
+    <h1
+      class="mt-6 text-2xl tracking-tighter text-primary md:mt-12 md:text-5xl"
+    >
       <%= listTitle %>
     </h1>
     <% if (user !== undefined && isAuthed && !isActive) { %>
@@ -74,21 +237,17 @@
     </form>
     <% } else if (user !== undefined && isAuthed && isActive) { %>
     <h3 class="italic">Your Currently Active List</h3>
-    <% } %> <% if (user !== undefined) { %> <%- include('partials/searchmovies')
-    -%> <% } %>
+    <% } %>
 
     <main
-      class="moviesList flex justify-center items-center mb-12 px-6 md:px-0"
+      class="moviesList mb-12 flex items-center justify-center px-6 md:px-0"
     >
-      <ul class="text-left mt-6 px-6">
+      <ul class="mt-6 px-6 text-left">
         <% movies.forEach( movie => { %>
-        <li class="movieName list-disc my-2" data-id="<%=movie._id%>">
+        <li class="movieName my-2 list-disc" data-id="<%=movie._id%>">
           <a
             href="https://www.themoviedb.org/movie/<%= movie.movieId %>"
-            class="underline underline-offset-2 hover:text-teal
-            hover:transition-color hover:duration-300 active:text-med-teal
-            active:transition-colors active:duration-300
-            motion-reduce:hover:transition-none"
+            class="link-hover"
             ><%=movie.movieTitle%> <% if (movie.movieYear != -1) { %>
             (<%=movie.movieYear%>)<% } %></a
           >
@@ -102,10 +261,7 @@
               <iconify-icon
                 inline
                 icon="ci:trash-full"
-                class="text-xl md:text-2xl hover:text-teal
-                hover:transition-color hover:duration-300 active:text-med-teal
-                active:transition-colors active:duration-300
-                motion-reduce:hover:transition-none"
+                class="hover:transition-color hover:text-primary-hover text-xl hover:duration-300 active:text-primary active:transition-colors active:duration-300 motion-reduce:hover:transition-none md:text-2xl"
                 aria-label="remove movie from list"
                 onclick="return confirm(
                 'Are you sure you want to ' +
@@ -118,9 +274,6 @@
         <% }) %>
       </ul>
     </main>
-    <script
-        src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"
-        >
-    </script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
   </body>
 </html>

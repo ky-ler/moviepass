@@ -1,5 +1,4 @@
 const fetch = require("node-fetch");
-const { listIndexes } = require("../models/Movies");
 const Movie = require("../models/Movies");
 const List = require("../models/List");
 
@@ -60,12 +59,14 @@ module.exports = {
         });
         console.log("Movie has been deleted!");
       }
-      res.redirect(`/lists/${activeList.id}`);
+      // res.redirect(`/lists/${activeList.id}`);
+      res.redirect(req.get("referer"));
     } catch (err) {
       console.log(err);
     }
   },
   deleteMovie: async (req, res) => {
+    console.log(req);
     const activeList = await List.findOne({
       userId: req.user.id,
       isActive: true,
@@ -79,60 +80,151 @@ module.exports = {
     }
   },
   searchMovies: async (req, res) => {
-    // console.log(req.query);
+    // console.log(req.user);
+    if (!req.query.movieName) {
+      res.redirect("/");
+    }
+
     const movieTitle = req.query.movieName;
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&language=en-US&query=${movieTitle}'`;
-    const activeList = await List.findOne({
-      userId: req.user.id,
-      isActive: true,
-    });
-    // console.log(activeList);
+    let pageNumber = req.query.page;
+    if (pageNumber === undefined) {
+      pageNumber = 1;
+    }
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&language=en-US&query=${movieTitle}&page=${pageNumber}`;
+
+    let activeList;
+    let activeListTitle;
+    let activeListId;
+    if (req.user !== undefined) {
+      activeList = await List.findOne({
+        userId: req.user.id,
+        isActive: true,
+      });
+    }
+    console.log(activeList);
 
     try {
       // Todo: Error handle empty query
       // if (movieTitle.length < 1) {
       //   res.redirect("back");
       // }
-
-      if (!activeList) {
-        res.redirect("/lists");
-      } else {
-        const response = await fetch(url);
-        const data = await response.json();
-        // console.log(req.user);
-        let userId = -1;
-        if (req.user) {
-          userId = req.user.id;
-        }
-
-        for (const movie of data.results) {
-          if (req.user) {
-            if (
-              !(await Movie.findOne({
-                movieId: movie.id,
-                userId: req.user.id,
-                listId: activeList.id,
-              }))
-            ) {
-              movie.onList = false;
-            } else {
-              movie.onList = true;
-            }
+      const response = await fetch(url);
+      const data = await response.json();
+      // console.log(data);
+      let userId = -1;
+      if (req.user) {
+        userId = req.user.id;
+      }
+      if (activeList !== null) {
+        activeListTitle = activeList.listTitle;
+        activeListId = activeList.id;
+      }
+      for (const movie of data.results) {
+        if (req.user && activeList !== null) {
+          if (
+            !(await Movie.findOne({
+              movieId: movie.id,
+              userId: req.user.id,
+              listId: activeList.id,
+            }))
+          ) {
+            movie.onList = false;
+          } else {
+            movie.onList = true;
           }
         }
-        console.log(req.query.movieName);
-        if (req.query.movieName === undefined) {
-          res.redirect("/lists");
-        } else {
-          res.render("movieSearch.ejs", {
-            activeList: activeList.listTitle,
-            activeId: activeList.id,
-            movies: data.results,
-            movieName: req.query.movieName,
-            user: req.user,
-          });
+      }
+
+      // console.log(req.params.movieName);
+      // console.log(data.results);
+
+      res.render("search.ejs", {
+        hasActive: activeList !== null,
+        activeList: activeListTitle,
+        activeId: activeListId,
+        movies: data.results,
+        movieName: movieTitle,
+        user: req.user,
+        pageNumber: pageNumber,
+        totalPages: data.total_pages,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  // Working on adding top movies
+  tmdbLists: async (req, res) => {
+    // https://developers.themoviedb.org/3/movies/get-top-rated-movies
+    let pageNumber = req.params.page;
+    if (pageNumber === undefined) {
+      pageNumber = 1;
+    }
+
+    let listTitle = req.params.listType;
+    let list = req.params.listType;
+
+    if (list === "top" || list === "Top Rated") {
+      list = "top_rated";
+      listTitle = "Top Rated";
+    } else if (list === "now-playing" || list === "Now Playing") {
+      list = "now_playing";
+      listTitle = "Now Playing";
+    }
+    const url = `https://api.themoviedb.org/3/movie/${list}?api_key=${process.env.API_KEY}&language=en-US&page=${pageNumber}&region=US`;
+    // console.log(url);
+    const response = await fetch(url);
+    const data = await response.json();
+
+    let activeList;
+    let activeListTitle;
+    let activeListId;
+    if (req.user !== undefined) {
+      activeList = await List.findOne({
+        userId: req.user.id,
+        isActive: true,
+      });
+    }
+
+    console.log(activeList);
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      // console.log(req.user);
+      let userId = -1;
+      if (req.user) {
+        userId = req.user.id;
+      }
+      if (activeList !== null) {
+        activeListTitle = activeList.listTitle;
+        activeListId = activeList.id;
+      }
+      for (const movie of data.results) {
+        if (req.user && activeList !== null) {
+          if (
+            !(await Movie.findOne({
+              movieId: movie.id,
+              userId: req.user.id,
+              listId: activeList.id,
+            }))
+          ) {
+            movie.onList = false;
+          } else {
+            movie.onList = true;
+          }
         }
       }
+      res.render("tmdbMovies.ejs", {
+        hasActive: activeList !== null,
+        activeList: activeListTitle,
+        activeId: activeListId,
+        movies: data.results,
+        listType: listTitle,
+        pageNumber: pageNumber,
+        user: req.user,
+        url: req.params.listType,
+      });
     } catch (err) {
       console.log(err);
     }

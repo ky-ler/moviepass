@@ -4,7 +4,6 @@ const User = require("../models/User");
 
 module.exports = {
   getAll: async (req, res) => {
-    // console.log(req.body);
     try {
       const lists = await List.find({ userId: req.user.id });
       const allLists = await List.countDocuments({
@@ -20,13 +19,10 @@ module.exports = {
     }
   },
   getList: async (req, res) => {
-    // console.log(req.user);
     const moviesOnList = await Movie.find({ listId: req.params.id });
     let listInfo = await List.find({ _id: req.params.id });
     let listUser = await User.findOne({ userId: req.params.id });
     let isAuthed;
-
-    console.log(listInfo[0].userId);
 
     if (req.user) {
       isAuthed = listInfo[0].userId == req.user.id;
@@ -46,7 +42,6 @@ module.exports = {
           isAuthed: isAuthed,
           isActive: listInfo[0].isActive,
         });
-        // console.log(isAuthed && listInfo[0].isActive);
       }
     } catch (err) {
       console.log(err);

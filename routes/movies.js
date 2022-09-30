@@ -7,4 +7,6 @@ router.post("/addMovie", ensureAuth, moviesController.addMovie);
 
 router.delete("/deleteMovie/:id", ensureAuth, moviesController.deleteMovie);
 
+router.get("/:listType/:page?", moviesController.tmdbLists);
+
 module.exports = router;

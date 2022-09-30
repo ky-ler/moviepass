@@ -7,7 +7,7 @@ router.get("/", ensureAuth, listsController.getAll);
 
 router.get("/:id", listsController.getList);
 
-router.post("/createList", listsController.createList);
+router.post("/createList", ensureAuth, listsController.createList);
 
 router.put("/makeActive/:id", ensureAuth, listsController.makeActive);
 

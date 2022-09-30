@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search | MoviePass</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+  </head>
+  <body class="text-center">
+    <header>
+      <nav class="navbar bg-base-300 shadow justify-around">
+        <div class="">
+          <div class="dropdown">
+            <label tabindex="0"  class="btn btn-ghost btn-circle swap swap-rotate lg:hidden">
+  
+              <!-- this hidden checkbox controls the state -->
+              <input type="checkbox" />
+              
+              <!-- hamburger icon -->
+              <svg class="swap-off fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"/></svg>
+              
+              <!-- close icon -->
+              <svg class="swap-on fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"/></svg>
+              
+            </label>
+            <ul tabindex="0" class="menu menu-compact dropdown-content 
+            mt-3 p-2 shadow bg-base-300 rounded-box">
+              <li tabindex="0">
+                <a class="justify-between">
+                  Movies
+                  <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
+                </a>
+                <ul class="p-2 bg-base-300 shadow">
+                  <% if (user !== undefined) { %>
+                    <li><a href="/lists">My Lists</a></li>
+                  <% } %>
+                  <li><a href="/movies/top">Top Rated</a></li>
+                  <li><a href="/movies/popular">Popular</a></li>
+                  <li><a href="/movies/now-playing">Now Playing</a></li>
+                  <li><a href="/movies/upcoming">Upcoming</a></li>
+                </ul>
+              </li>
+              <li tabindex="0">
+                <a class="justify-between">
+                  Account
+                  <svg 
+                    class="fill-current" xmlns="http://www.w3.org/2000/svg" 
+                    width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/>
+                  </svg>
+                </a>
+                <ul class="p-2 bg-base-300 shadow">
+                  <% if (user !== undefined) { %>
+                    <li><a href="/lists">My Lists</a></li>
+                    <li><a href="/logout">Log Out</a></li>
+                  <% } else { %>
+                    <li><a href="/login">Log In</a></li>
+                    <li><a href="/signup">Sign Up</a></li>
+                  <% } %>
+                </ul>
+              </li>
+              <form action="/search" method="get" class="">
+                <input type="search" required name="movieName" placeholder="Search" class="mb-1.5 input input-bordered input-sm w-full">
+                <label class="btn btn-ghost btn-sm w-full">
+                  <input type="submit" class="hidden">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                </label>
+              </form>
+            </ul>
+          </div>
+          <a class="btn btn-ghost normal-case text-primary text-xl hidden lg:flex">MoviePass</a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="menu menu-horizontal p-0">
+            <li tabindex="0">
+              <a>
+                Movies
+                <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+              </a>
+              <ul class="p-2 bg-base-300 shadow z-10">
+                <% if (user !== undefined) { %>
+                <li><a href="/lists">My Lists</a></li>
+                <% } %>
+                <li><a href="/movies/top">Top Rated</a></li>
+                <li><a href="/movies/popular">Popular</a></li>
+                <li><a href="/movies/now-playing">Now Playing</a></li>
+                <li><a href="/movies/upcoming">Upcoming</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="form-control">
+            <form action="/search" method="get" class="input-group">
+              <input type="search" required name="movieName" placeholder="Search for Movie" class="input input-bordered">
+              <label class="btn btn-square">
+                <input type="submit" class="hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+              </label>
+            </form>
+          </div>
+        </div>
+        <div class="hidden lg:flex">
+          <ul class="menu menu-horizontal p-0">
+            <li tabindex="0">
+              <a>
+                Account
+                <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+              </a>
+              <ul class="p-2 bg-base-300 shadow">
+                <% if (user !== undefined) { %>
+                  <li><a href="/lists">My Lists</a></li>
+                  <li><a href="/logout">Log Out</a></li>
+                <% } else { %>
+                  <li><a href="/login">Log In</a></li>
+                  <li><a href="/signup">Sign Up</a></li>
+                <% } %>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="navbar-end flex lg:hidden"><a class="btn btn-ghost normal-case text-xl text-primary">MoviePass</a></div>
+      </nav>
+    </header>
+
+    <% if (!movies.length) { %>
+    <div>
+      <h2 class="mt-6 text-2xl md:mt-12 md:text-4xl">
+        Movie list not found
+      </h2>
+    </div>
+    <% } else { %>
+      <h2 class="mt-6 text-2xl md:mt-12 md:text-4xl">
+        Results for <span class="text-primary">'<%= movieName %>'</span>
+      </h2>
+      <h3 class="mt-6">
+      <% if (user !== undefined && hasActive) { %>
+          <h3 class="mt-6">
+              Currently Active List:
+              <a
+              href="/lists/<%= activeId %>"
+              class="link link-primary"
+              ><%= activeList %></a
+              >
+          </h3>
+      <% } %>
+      <div class="mt-6 btn-group">
+        <% if (Number(pageNumber) === 1) { %>
+        <button class="btn btn-disabled">«</button>
+        <% } else { %>
+        <a class="btn" href="/search?movieName=<%= movieName %>&page=<%= Number(pageNumber) - 1 %>">«</a>
+        <% } %>
+        <button class="btn no-animation">Page <%= pageNumber %></button>
+        <% if (Number(totalPages) < Number(pageNumber) + 1) { %>
+          <a class="btn btn-disabled"href="/search?movieName=<%= movieName %>&page=<%= Number(pageNumber) + 1 %>">»</a>
+        <% } else { %>
+          <a class="btn"href="/search?movieName=<%= movieName %>&page=<%= Number(pageNumber) + 1 %>">»</a>
+          <% } %>
+      </div>
+      <main class="flex h-auto items-center justify-around">
+        <div
+          class="results flex flex-col flex-wrap items-stretch justify-around text-center md:w-3/5 md:flex-row"
+        >
+          <% for (let i = 0; i < movies.length; i++) { %> <% if (movies[i]) { %>
+            <div
+              class="card my-8 flex flex-col items-stretch justify-center rounded-2xl bg-base-300 p-6"
+              id="<%= movies[i].id %>"
+            >
+              <h2 class="my-auto">
+                <a
+                  href="https://www.themoviedb.org/movie/<%= movies[i].id %>"
+                  class=""
+                >
+                  <%= movies[i].title %> <% if (movies[i].release_date) { %> (<%=
+                  movies[i].release_date.split('-')[0] %>) <% } %>
+                </a>
+              </h2>
+              <img
+                class="movie-poster mt-4"
+                src="https://image.tmdb.org/t/p/original<%= movies[i].poster_path %>"
+                onerror="this.src='/img/not-found.png';
+                this.alt='movie poster not found'"
+                alt="<%= movies[i].title %> Movie Poster"
+              />
+              <% if (user !== undefined && hasActive) { %>
+                <form action="../movies/addMovie" method="post" class="mt-4 inline">
+                  <input type="hidden" name="movieId" value="<%= movies[i].id %>" />
+                  <button type="submit" class="<%= movies[i].id %> mt-auto">
+                    <iconify-icon
+                      inline
+                      icon="<%= movies[i].onList == false ?
+                            'ci:list-plus' : 'ci:list-minus' %>"
+                      width="24" 
+                      height="24"
+                      class="fill-current btn btn-ghost btn-square bg-base-300"
+                      aria-label="<%= movies[i].onList == false ?
+                                  'add movie to list' : 'remove movie from list' %>"
+                    ></iconify-icon>
+                  </button>
+                </form>
+              <% } %>
+            </div>
+          <% } %> <% } %>
+        </div>
+      </main>
+      <div class="mb-6 btn-group">
+        <% if (Number(pageNumber) === 1) { %>
+        <button class="btn btn-disabled">«</button>
+        <% } else { %>
+        <a class="btn" href="/search?movieName=<%= movieName %>&page=<%= Number(pageNumber) - 1 %>">«</a>
+        <% } %>
+        <button class="btn no-animation">Page <%= pageNumber %></button>
+        <% if (Number(totalPages) < Number(pageNumber) + 1) { %>
+          <a class="btn btn-disabled"href="/search?movieName=<%= movieName %>&page=<%= Number(pageNumber) + 1 %>">»</a>
+        <% } else { %>
+          <a class="btn"href="/search?movieName=<%= movieName %>&page=<%= Number(pageNumber) + 1 %>">»</a>
+          <% } %>
+      </div>
+      <% } %>
+    <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
+  </body>
+</html>

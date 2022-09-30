@@ -7,16 +7,14 @@
     <title>MoviePass</title>
     <link rel="stylesheet" href="../../css/style.css" />
   </head>
-  <body class="bg-darkest-grey text-off-white text-center px-8 py-12">
+  <body class="bg-darkest-grey text-off-white px-8 py-12 text-center">
     <% if (error == 'Error: Cannot delete list if only one list exists') { %>
-    <h2 id="one-list-error" class="mt-12 text-xl"><%= error %></h2>
+    <h2 id="one-list-error" class="mt-12 text-xl">
+      Error: You cannot delete your only list. Create a new list first.
+    </h2>
     <% } %>
     <h4 class="mt-12">
-      <a
-        href="javascript:history.back()"
-        class="hover:text-teal hover:transition-color hover:duration-300
-        active:text-med-teal active:transition-colors active:duration-300
-        motion-reduce:hover:transition-none"
+      <a href="javascript:history.back()" class="link-hover"
         >Click here to go back</a
       >
     </h4>

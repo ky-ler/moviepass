@@ -7,55 +7,262 @@
     <title>MoviePass</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body class="bg-darkest-grey text-off-white text-center">
-    <header class="py-6 px-12 bg-darker-grey">
-      <nav class="flex justify-center md:justify-around items-center">
-        <ul class="flex">
-          <li>
-            <a
-              href="/changelog"
-              class="p-2 hover:text-teal hover:transition-color
-              hover:duration-300 active:text-med-teal active:transition-colors
-              active:duration-300 motion-reduce:hover:transition-none"
-              >Changelog</a
+  <body class="text-center">
+    <header>
+      <nav class="navbar justify-around bg-base-300 shadow">
+        <div class="">
+          <div class="dropdown">
+            <label
+              tabindex="0"
+              class="btn swap btn-ghost btn-circle swap-rotate lg:hidden"
             >
-          </li>
-        </ul>
-        <ul class="flex">
-          <li class="mr-2">
-            <a
-              href="/login"
-              class="p-2 hover:text-teal hover:transition-color
-              hover:duration-300 active:text-med-teal active:transition-colors
-              active:duration-300 motion-reduce:hover:transition-none"
-              >Log In</a
+              <!-- this hidden checkbox controls the state -->
+              <input type="checkbox" />
+
+              <!-- hamburger icon -->
+              <svg
+                class="swap-off fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
+                />
+              </svg>
+
+              <!-- close icon -->
+              <svg
+                class="swap-on fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 512 512"
+              >
+                <polygon
+                  points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"
+                />
+              </svg>
+            </label>
+            <ul
+              tabindex="0"
+              class="dropdown-content menu rounded-box menu-compact mt-3 bg-base-300 p-2 shadow"
             >
-          </li>
-          <li>
-            <a
-              href="/signup"
-              class="p-2 hover:text-teal hover:transition-color
-              hover:duration-300 active:text-med-teal active:transition-colors
-              active:duration-300 motion-reduce:hover:transition-none"
-              >Sign Up</a
-            >
-          </li>
-        </ul>
+              <li tabindex="0">
+                <a class="justify-between">
+                  Movies
+                  <svg
+                    class="fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+                    />
+                  </svg>
+                </a>
+                <ul class="bg-base-300 p-2 shadow">
+                  <% if (user !== undefined) { %>
+                  <li><a href="/lists">My Lists</a></li>
+                  <% } %>
+                  <li><a href="/movies/top">Top Rated</a></li>
+                  <li><a href="/movies/popular">Popular</a></li>
+                  <li><a href="/movies/now-playing">Now Playing</a></li>
+                  <li><a href="/movies/upcoming">Upcoming</a></li>
+                </ul>
+              </li>
+              <li tabindex="0">
+                <a class="justify-between">
+                  Account
+                  <svg
+                    class="fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+                    />
+                  </svg>
+                </a>
+                <ul class="bg-base-300 p-2 shadow">
+                  <% if (user !== undefined) { %>
+                  <li><a href="/lists">My Lists</a></li>
+                  <li><a href="/logout">Log Out</a></li>
+                  <% } else { %>
+                  <li><a href="/login">Log In</a></li>
+                  <li><a href="/signup">Sign Up</a></li>
+                  <% } %>
+                </ul>
+              </li>
+              <form action="/search" method="get" class="">
+                <input
+                  type="search"
+                  required
+                  name="movieName"
+                  placeholder="Search"
+                  class="input input-bordered input-sm mb-1.5 w-full"
+                />
+                <label class="btn btn-ghost btn-sm w-full">
+                  <input type="submit" class="hidden" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                </label>
+              </form>
+            </ul>
+          </div>
+          <a
+            class="btn btn-ghost hidden text-xl normal-case text-primary lg:flex"
+            >MoviePass</a
+          >
+        </div>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="menu menu-horizontal p-0">
+            <li tabindex="0">
+              <a>
+                Movies
+                <svg
+                  class="fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                  />
+                </svg>
+              </a>
+              <ul class="z-10 bg-base-300 p-2 shadow">
+                <% if (user !== undefined) { %>
+                <li><a href="/lists">My Lists</a></li>
+                <% } %>
+                <li><a href="/movies/top">Top Rated</a></li>
+                <li><a href="/movies/popular">Popular</a></li>
+                <li><a href="/movies/now-playing">Now Playing</a></li>
+                <li><a href="/movies/upcoming">Upcoming</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="form-control">
+            <form action="/search" method="get" class="input-group">
+              <input
+                type="search"
+                required
+                name="movieName"
+                placeholder="Search for Movie"
+                class="input input-bordered"
+              />
+              <label class="btn btn-square">
+                <input type="submit" class="hidden" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="inline-block h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </label>
+            </form>
+          </div>
+        </div>
+        <div class="hidden lg:flex">
+          <ul class="menu menu-horizontal p-0">
+            <li tabindex="0">
+              <a>
+                Account
+                <svg
+                  class="fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                  />
+                </svg>
+              </a>
+              <ul class="bg-base-300 p-2 shadow">
+                <% if (user !== undefined) { %>
+                <li><a href="/lists">My Lists</a></li>
+                <li><a href="/logout">Log Out</a></li>
+                <% } else { %>
+                <li><a href="/login">Log In</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+                <% } %>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="navbar-end flex lg:hidden">
+          <a class="btn btn-ghost text-xl normal-case text-primary"
+            >MoviePass</a
+          >
+        </div>
       </nav>
     </header>
 
-    <h1 class="text-teal text-5xl tracking-tighter mt-6 md:mt-24">MoviePass</h1>
-    <p class="px-6">Create movie lists and share them with your friends</p>
+    <!-- <h1 class="mt-12 text-5xl tracking-tighter text-primary md:mt-24">MoviePass</h1> -->
+    <!-- <p class="px-6">Create and share movie lists</p> -->
 
-    <section
-      class="flex flex-col justify-center items-center my-12 px-6 md:px-0"
+    <div class="hero min-h-screen">
+      <div class="hero-content text-center">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold">Welcome!</h1>
+          <p class="py-6">
+            MovePass allows you to create and share lists of movies with your
+            friends.
+          </p>
+          <!-- <button class="btn btn-primary">Get Started</button> -->
+        </div>
+      </div>
+    </div>
+    <footer
+      class="footer flex items-center justify-around bg-base-300 p-4 text-neutral-content"
     >
-      <p class="text-lg underline">Features to add:</p>
-      <ul class="text-left list-disc max-w-lg px-6">
-        <li>(Ongoing) Styling site with TailwindCSS</li>
-        <li>Community lists (Upvote based?)</li>
-        <li>Possibly add TV Shows and Anime lists</li>
-      </ul>
-    </section>
+      <div class="items-center">
+        <span
+          >View on Github
+          <a href="https://github.com/KylerRiggs/moviepass" class="inline">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="btn btn-ghost btn-square btn-sm inline"
+              width="24"
+              height="24"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+              />
+            </svg>
+          </a>
+        </span>
+      </div>
+    </footer>
   </body>
 </html>

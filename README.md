@@ -1,6 +1,6 @@
 # MoviePass
 
-Create movie lists and share them with your friends. 
+Create movie lists and share them with your friends.
 
 Created using MVC architecture, user authentication, and [TMDB's API](https://www.themoviedb.org/).
 
@@ -14,7 +14,7 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
 
 ---
 
-# Things to add
+# Steps to Run Locally
 
 - Get an API key from [TMDB](https://www.themoviedb.org/).
 - Create a `.env` file and add the following as `key=value`
@@ -24,9 +24,3 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
   - NODE_ENV=`dev` or `production`
 
 ---
-
-# To Do
-
-- (Ongoing) Style pages using Tailwind CSS
-- Community lists (Upvote based?)
-- Possibly add TV Shows and Anime lists

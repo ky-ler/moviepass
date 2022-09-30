@@ -7,51 +7,70 @@
     <title>Log In | MoviePass</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body class="bg-darkest-grey text-off-white text-center">
-    <h1 class="text-teal text-2xl md:text-5xl mt-6 md:mt-12 tracking-tighter">
-      <a
-        href="/"
-        class="hover:text-med-teal hover:transition-color
-        hover:duration-300 motion-reduce:hover:transition-none"
-        >MoviePass</a
-      >
-      | Log In
-    </h1>
-    <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
-    <div class="alert alert-danger"><%= el.msg %></div>
-    <% }) %> <% } %> <% if (locals.messages.info) { %> <% messages.info.forEach(
-    el => { %>
-    <div class="alert alert-danger"><%= el.msg %></div>
-    <% }) %> <% } %>
+  <body class="text-center">
+    <main class="min-h-screen">
+      <h1 class="mt-6 text-2xl tracking-tighter md:mt-12 md:text-5xl">
+        <a href="/" class="link link-hover link-primary">MoviePass</a>
+        | Log In
+      </h1>
+      <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+      <div class="alert-danger alert"><%= el.msg %></div>
+      <% }) %> <% } %> <% if (locals.messages.info) { %> <%
+      messages.info.forEach( el => { %>
+      <div class="alert-danger alert"><%= el.msg %></div>
+      <% }) %> <% } %>
 
-    <form
-      action="/login"
-      method="POST"
-      class="flex flex-col justify-center items-center mt-12"
+      <div
+        class="mt-12 flex flex-col items-center justify-center text-center md:mx-auto md:w-3/5"
+      >
+        <form action="/login" method="POST">
+          <label class="input-group">
+            <span>Email</span>
+            <input
+              type="email"
+              name="email"
+              placeholder="you@example.com"
+              class="input input-bordered w-full"
+              required
+            />
+          </label>
+          <label class="input-group mt-6">
+            <span>Password</span>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              class="input input-bordered"
+              required
+              minlength="8"
+            />
+          </label>
+          <input type="submit" value="Login" class="btn btn-outline mt-6" />
+        </form>
+      </div>
+    </main>
+    <footer
+      class="footer flex items-center justify-around bg-base-300 p-4 text-neutral-content"
     >
-      <label for="email">Email:</label>
-      <input
-        type="email"
-        name="email"
-        placeholder="you@example.com"
-        class="py-2 px-4 text-darkest-grey rounded-2xl"
-      />
-      <label for="password" class="mt-6">Password:</label>
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        class="py-2 px-4 text-darkest-grey rounded-2xl"
-      />
-      <input
-        type="submit"
-        value="Login"
-        class="bg-transparent border-2 border-teal my-6 py-2 px-4 rounded-2xl
-        hover:border-med-teal active:border-dark-teal hover:-translate-y-0.5
-        active:-translate-y-1 hover:transition-transform active:transition-all
-        duration-300 motion-reduce:hover:-translate-y-0
-        motion-reduce:active:-translate-y-0"
-      />
-    </form>
+      <div class="items-center">
+        <span
+          >View on Github
+          <a href="https://github.com/KylerRiggs/moviepass" class="inline">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="btn btn-ghost btn-square btn-sm inline"
+              width="24"
+              height="24"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+              />
+            </svg>
+          </a>
+        </span>
+      </div>
+    </footer>
   </body>
 </html>
