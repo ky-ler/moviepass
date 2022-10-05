@@ -14,57 +14,10 @@ body {
   font-family: "poppinsregular", sans-serif;
 }
 
-/* h1 {
-  text-align: center;
+.tooltip:before {
+  @apply transition-none;
+  @apply no-animation;
 }
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
-nav {
-  padding: 0 8em;
-}
-
-.navItems {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.navItems ul {
-  list-style: none;
-}
-
-.navItems li {
-  display: inline;
-}
-
-.upcoming,
-.changelog {
-  width: 50%;
-  margin: 0 auto;
-  text-align: left;
-} */
-
-/* .list {
-  text-align: left;
-} */
-
-/* .moviesList {
-  display: flex;
-  justify-content: center;
-} */
-
-/* .results {
-  width: 70%;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  align-items: center;
-  text-align: center;
-} */
 
 .movie-poster {
   height: 250px;

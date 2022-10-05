@@ -42,7 +42,7 @@ module.exports = {
       ) {
         const response = await fetch(url);
         const data = await response.json();
-        console.log(data.title);
+        // console.log(data.title);
         await Movie.create({
           movieId: req.body.movieId,
           movieTitle: data.title,
@@ -66,7 +66,7 @@ module.exports = {
     }
   },
   deleteMovie: async (req, res) => {
-    console.log(req);
+    // console.log(req);
     const activeList = await List.findOne({
       userId: req.user.id,
       isActive: true,
@@ -101,7 +101,7 @@ module.exports = {
         isActive: true,
       });
     }
-    console.log(activeList);
+    // console.log(activeList);
 
     try {
       // Todo: Error handle empty query
@@ -182,7 +182,7 @@ module.exports = {
       });
     }
 
-    console.log(activeList);
+    // console.log(activeList);
 
     try {
       const response = await fetch(url);
