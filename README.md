@@ -27,10 +27,18 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
 
 ## Pictures
 
+Example of a pre-curated list "Now Playing"
+
 !["Now playing" list](https://github.com/ky-ler/moviepass/raw/main/media/now_playing.png)
+
+Example of my "My Lists" page
 
 !["My Lists" page](https://github.com/ky-ler/moviepass/raw/main/media/my_lists.png)
 
+Example showing off one of my lists
+
 ![Movie List example](https://github.com/ky-ler/moviepass/raw/main/media/list_example.png)
+
+Search results example
 
 ![Search for movie example](https://github.com/ky-ler/moviepass/raw/main/media/search.png)
