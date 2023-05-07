@@ -4,17 +4,17 @@ Create movie lists and share them with your friends.
 
 Created using MVC architecture, user authentication, and [TMDB's API](https://www.themoviedb.org/).
 
-> View live deployment [here](https://moviepass.freezi.me/)
+> I have taken the live site down and uploaded images of the site below
 
 ---
 
-# Packages/Dependencies used
+## Packages/Dependencies used
 
 bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mongodb, mongoose, morgan, node-fetch, nodemon, passport, passport-local, validator
 
 ---
 
-# Steps to Run Locally
+## Steps to Run Locally
 
 - Get an API key from [TMDB](https://www.themoviedb.org/).
 - Create a `.env` file and add the following as `key=value`
@@ -24,3 +24,13 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
   - NODE_ENV=`dev` or `production`
 
 ---
+
+## Pictures
+
+!["Now playing" list](https://github.com/ky-ler/moviepass/raw/main/media/now_playing.png)
+
+!["My Lists" page](https://github.com/ky-ler/moviepass/raw/main/media/my_lists.png)
+
+![Movie List example](https://github.com/ky-ler/moviepass/raw/main/media/list_example.png)
+
+![Search for movie example](https://github.com/ky-ler/moviepass/raw/main/media/search.png)
