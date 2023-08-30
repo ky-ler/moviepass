@@ -67,7 +67,7 @@
             alt="<%= movies[i].title %> Movie Poster"
           />
           <% if (user !== undefined && hasActive) { %>
-          <form action="../movies/addMovie" method="post" class="mt-4 inline">
+          <form action="/movies/addMovie" method="post" class="mt-4 inline">
             <input type="hidden" name="movieId" value="<%= movies[i].id %>" />
             <button type="submit" class="<%= movies[i].id %> mt-auto">
               <iconify-icon
