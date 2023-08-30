@@ -1,6 +1,7 @@
 const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
+const { createList } = require("./lists");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
@@ -110,6 +111,7 @@ exports.postSignup = (req, res, next) => {
           if (err) {
             return next(err);
           }
+          createList(req);
           res.redirect("/lists");
         });
       });

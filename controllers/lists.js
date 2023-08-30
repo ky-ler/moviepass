@@ -47,19 +47,23 @@ module.exports = {
       console.log(err);
     }
   },
-  createList: async (req, res) => {
+  createList: async (
+    req,
+    res,
+    listTitle = req.body.listTitle || "My First List"
+  ) => {
     try {
       console.log(!(await List.findOne({ userId: req.user.id })));
       let active = false;
       if (!(await List.findOne({ userId: req.user.id })) === true) {
         await List.create({
-          listTitle: req.body.listTitle,
+          listTitle: listTitle,
           userId: req.user._id,
           isActive: true,
         });
       } else {
         await List.create({
-          listTitle: req.body.listTitle,
+          listTitle: listTitle,
           userId: req.user._id,
           isActive: false,
         });
