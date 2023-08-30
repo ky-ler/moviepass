@@ -2,7 +2,7 @@
 
 Create movie lists and share them with your friends.
 
-Created using MVC architecture, user authentication, and [TMDB's API](https://www.themoviedb.org/).
+Created using MVC, user authentication, and [TMDB's API](https://www.themoviedb.org/).
 
 > I have taken the live site down and uploaded images of the site below
 
