@@ -34,7 +34,7 @@ app.use(
   session({
     secret: "keyboard cat",
     cookie: {
-      secure: process.env.NODE_ENV !== "production" ? false : true,
+      secure: process.env.NODE_ENV === "production",
     },
     resave: false,
     saveUninitialized: false,
