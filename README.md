@@ -1,10 +1,10 @@
 # MoviePass
 
+> Note: This project was completed in 2023 and is no longer actively maintained.
+
 Create movie lists and share them with your friends.
 
 Created using MVC, user authentication, and [TMDB's API](https://www.themoviedb.org/).
-
-> I have taken the live site down and uploaded images of the site below
 
 ---
 
